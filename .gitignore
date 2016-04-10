@@ -1,1 +1,9 @@
 .DS_Store
+src/cache/*
+src/admin/cache/*
+src/wac/cache/*
+src/application/mediaArchive/*
+src/application/classes/userModules/ontologybuilder/*
+src/pdf/*
+src/public/*
+src/blog/*

@@ -1,0 +1,20 @@
+<div tal:condition="php: !is_null(Component.records)">
+  <ul class="entities publication" tal:condition="php: Component.records.count() > 0">
+    <li tal:repeat="item Component/records">
+      <img tal:attributes="alt item/menudetail_title; src item/document/coverImg" />
+      <div class="description">
+        <h5><a href="" tal:attributes="href item/__url__; title item/menudetail_title" tal:content="item/menudetail_title"></a></h5>
+        <small>ultima modifica <span tal:content="item/menu_modificationDate" /></small>
+        <span tal:omit-tag="" tal:condition="php: item.menu_pageType=='PublicationPdf'"><br />PDF</span>
+      </div>
+      <div class="actions">
+        <a tal:attributes="href item/__url__;" title="Modifica"><i class="icon-pencil icon-white"></i></a>
+        <a tal:attributes="href item/__urlDelete__;" title="Cancella" onclick="if (!confirm('Sei sicuro di voler cancellare la pubblicazione?')){return false;}"><i class="icon-remove icon-white"></i></a>
+      </div>
+
+      <div class="state public" tal:condition="php: item.document.state == '2'">pubblicata</div>
+      <div class="state no-public" tal:condition="php: item.document.state == '1'">in revisione</div>
+      <div class="state no-public" tal:condition="php: item.document.state == '0'">non pubblicata</div>
+    </li>
+  </ul>
+</div>

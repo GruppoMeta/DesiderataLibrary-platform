@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+          xmlns:glz="http://www.glizy.org/dtd/1.0/"
+          xmlns:mvc="org.glizy.mvc.components.*"
+          xmlns:cms="org.glizycms.views.components.*"
+          defaultEditableRegion="content"
+          templateType="php"
+          templateFileName="Page.php">
+
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <cms:FormEditWithAjaxSteps id="myForm" controllerName="desiderataLibrary.modules.exportEPUB.controllers.*">
+            <glz:Input id="dc_title" label="{i18n:Titolo}" size="90" value="{dc_title}" />
+            <glz:Input id="dc_author" label="{i18n:Autore}" size="90" value="{dc_author}" />
+            <glz:Hidden id="startPage" bindTo="menu_id"/>
+            <glz:Button value="{i18n:Esporta}" id="export" cssClass="btn js-export" />
+        </cms:FormEditWithAjaxSteps>
+
+        <glz:JSscript><![CDATA[
+$(function(){
+    $('input.js-export').click(function(e){
+        e.preventDefault();
+        Glizy.startAjaxSteps($("#myForm").serialize());
+    });
+});
+]]></glz:JSscript>
+
+    </mvc:State>
+
+</mvc:Page>

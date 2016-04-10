@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Config xmlns:glz="http://www.glizy.org/dtd/1.0/">
+    <glz:Import src="../../../application/config/config_easybook_common.xml" />
+
+    <glz:Param name="gruppometa.easybook.preview.url" value="{{desiderataLibrary.fe.url}}/liquidbook/#/viewer/" />
+    <glz:Param name="desiderataLibrary.plugins.importEPUB.folder" value='/opt/data/ftp/epub/'/>
+    <!--
+        le informazione sui tipo della pubblicazione
+        gruppometa.easybook.add.publication
+        sono nel FE perché ci sono valori che devono essere utilizzati anche dai servizi
+    -->
+</glz:Config>

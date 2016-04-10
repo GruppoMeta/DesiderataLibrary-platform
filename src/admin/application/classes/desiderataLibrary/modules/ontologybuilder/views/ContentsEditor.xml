@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+	xmlns:glz="http://www.glizy.org/dtd/1.0/"
+	xmlns:cms="org.glizycms.views.components.*"
+	xmlns:mvc="org.glizy.mvc.components.*"
+	xmlns:cmp="desiderataLibrary.modules.ontologybuilder.views.components.*"
+    xmlns:evc="gruppometa.easybook.views.components.*"
+    controllerName="desiderataLibrary.modules.ontologybuilder.controllers.contentsEditor.*"
+    defaultEditableRegion="content"
+	templateType="php"
+	templateFileName="Page.php">
+	<glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <evc:DataGridAjax id="dataGrid" recordClassName="desiderataLibrary.modules.ontologybuilder.models.EntityDocument" queryOperator="AND" cssClass="table table-bordered table-striped">
+            <glz:DataGridColumn columnName="title" headerText="{i18n:Title}" renderCell="org.glizycms.contents.views.renderer.DocumentTitle"/>
+            <glz:DataGridColumn columnName="document_type" headerText="{i18n:Type}" sortable="false" searchable="false" renderCell="desiderataLibrary.modules.ontologybuilder.views.renderer.EntityName" />
+            <glz:DataGridColumn columnName="document_id" sortable="false" searchable="false" cssClass="actions" renderCell="desiderataLibrary.modules.ontologybuilder.views.renderer.ActionEditDeleteEntity" />
+        </evc:DataGridAjax>
+	    <cmp:FilterEntityType id="filer_document_type" dataGridAjaxId="dataGrid" fieldNumber="1" recordClassName="desiderataLibrary.modules.ontologybuilder.models.Entity" />
+        <cmp:AddEntityButton label="{i18n:Add content}" routeUrl="actionEntitiesAdd" editableRegion="actions"/>
+    </mvc:State>
+
+    <mvc:State name="edit">
+        <cmp:EntityFormEdit id="myForm" addValidationJs="false" controllerName="desiderataLibrary.modules.ontologybuilder.controllers.entityFormEdit.*">
+            <cms:pageTitleModifier action="edit" label="{i18n:New content}" new="true" />
+            <cms:pageTitleModifier action="edit" label="{i18n:Edit content}" new="false" field="title" />
+
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE}" type="button" cssClass="btn btn-primary js-glizycms-save" data="action=save" />
+                <glz:HtmlButton label="{i18n:GLZ_SAVE_CLOSE}" type="button" cssClass="btn js-glizycms-save" data="action=saveClose" />
+			    <glz:HtmlButton label="{i18n:GLZ_CANCEL}" type="button" cssClass="btn js-glizycms-cancel" data="action=cancel" />
+			</cms:FormButtonsPanel>
+		</cmp:EntityFormEdit>
+    </mvc:State>
+</mvc:Page>

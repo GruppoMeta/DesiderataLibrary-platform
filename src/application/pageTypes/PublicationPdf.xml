@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Page id="Page"
+	xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:e="gruppometa.easybook.views.components.*"
+	templateType="php"
+	templateFileName="page.php"
+	defaultEditableRegion="content" >
+
+    <e:GUID id="refId" label="{i18n:ID interno}" data="index=text" />
+    <glz:Input id="subtitle" label="{i18n:Sottotitolo}" />
+    <glz:Image id="cover" label="{i18n:Copertina}" />
+
+    <glz:Fieldset label="Proprietà">
+        <glz:List id="state" label="{i18n:Stato pubblicazione}">
+            <glz:ListItem key="0" value="Non pubblicata" />
+            <glz:ListItem key="1" value="In revisione" />
+            <glz:ListItem key="2" value="Pubblicata" />
+        </glz:List>
+        <glz:Input id="author" label="{i18n:Autore}" data="type=selectfrom;multiple=true;add_new_values=true;proxy=org.glizycms.contents.models.proxy.ContentFindTermProxy;proxy_params={&quot;multisite&quot;:false};index=text" required="true" />
+        <glz:Input id="serie" label="{i18n:Collana}" />
+        <glz:Input id="category" label="{i18n:Categoria catalogo}" data="type=selectfrom;multiple=true;add_new_values=true;proxy=org.glizycms.contents.models.proxy.ContentFindTermProxy;proxy_params={&quot;multisite&quot;:false};index=text" required="true" />
+        <glz:Text id="isbn" label="{i18n:ISBN}" adm:data="index=text" required="true" />
+        <glz:Text id="price" label="{i18n:Prezzo}" />
+        <glz:Checkbox id="isFree" label="{i18n:Licenza gratuita}" />
+        <glz:Input id="blogUrl" label="{i18n:Sito blog}" size="90" data="type=url"/>
+    </glz:Fieldset>
+
+    <glz:Fieldset label="Metadati per profilazione">
+        <glz:Input id="profile_age" label="{i18n:Età}" size="90" />
+        <glz:List id="profile_interests" label="{i18n:Interessi}"  emptyValue="-" multiSelect="true" rows="5">
+            <glz:ListItem value="Affari e finanza" />
+            <glz:ListItem value="Ambiente" />
+            <glz:ListItem value="Animali" />
+            <glz:ListItem value="Arte e cultura" />
+            <glz:ListItem value="Auto e trasporti" />
+            <glz:ListItem value="Bellezza e stile" />
+            <glz:ListItem value="Casa e giardino" />
+            <glz:ListItem value="Computer e Internet" />
+            <glz:ListItem value="Elettronica di consumo" />
+            <glz:ListItem value="Folclore" />
+            <glz:ListItem value="Fotografia" />
+            <glz:ListItem value="Giochi e passatempi" />
+            <glz:ListItem value="Gravidanza e genitori" />
+            <glz:ListItem value="Mangiare e bere" />
+            <glz:ListItem value="Matematica e scienze" />
+            <glz:ListItem value="Musica e intrattenimento" />
+            <glz:ListItem value="Natura" />
+            <glz:ListItem value="Notizie ed eventi" />
+            <glz:ListItem value="Politica e governo" />
+            <glz:ListItem value="Relazioni e famiglia" />
+            <glz:ListItem value="Salute" />
+            <glz:ListItem value="Scienze sociali" />
+            <glz:ListItem value="Scuola ed educazione" />
+            <glz:ListItem value="Società e culture" />
+            <glz:ListItem value="Sport" />
+            <glz:ListItem value="Territorio: Sardegna" />
+            <glz:ListItem value="Turismo e viaggi" />
+        </glz:List>
+        <glz:List id="profile_qualification" label="{i18n:Titolo di studio}"  emptyValue="-" multiSelect="true" rows="5">
+            <glz:ListItem value="Diploma: Magistrale" key="Magistrale"/>
+            <glz:ListItem value="Diploma: Classico" key="Classico"/>
+            <glz:ListItem value="Diploma: Scientifico" key="Scientifico"/>
+            <glz:ListItem value="Diploma: Tecnico" key="Tecnico"/>
+            <glz:ListItem value="Diploma: Artistico ed arte applicata" key="Artistico ed arte applicata"/>
+            <glz:ListItem value="Diploma: Disegno industriale" key="Disegno industriale"/>
+            <glz:ListItem value="Diploma: Linguistico" key="Linguistico"/>
+            <glz:ListItem value="Diploma: Turistico ed alberghiero" key="Turistico ed alberghiero"/>
+            <glz:ListItem value="Diploma: Musicale e coreutica" key="Musicale e coreutica"/>
+            <glz:ListItem value="Laurea: Agronomo e forestale" key="Agronomo e forestale"/>
+            <glz:ListItem value="Laurea: Architetto" key="Architetto"/>
+            <glz:ListItem value="Laurea: Assistente sanitario" key="Assistente sanitario"/>
+            <glz:ListItem value="Laurea: Assistente sociale" key="Assistente sociale"/>
+            <glz:ListItem value="Laurea: Biologia e biotecnologie" key="Biologia e biotecnologie"/>
+            <glz:ListItem value="Laurea: Chimico" key="Chimico"/>
+            <glz:ListItem value="Laurea: Restauro e conservazione beni culturali" key="Restauro e conservazione beni culturali"/>
+            <glz:ListItem value="Laurea: Alimentazione" key="Alimentazione"/>
+            <glz:ListItem value="Laurea: Psicologia" key="Psicologia"/>
+            <glz:ListItem value="Laurea: Economia, contabilità e finanza" key="Economia, contabilità e finanza"/>
+            <glz:ListItem value="Laurea: Geologo" key="Geologo"/>
+            <glz:ListItem value="Laurea: Geometra laureato" key="Geometra laureato"/>
+            <glz:ListItem value="Laurea: Medico infermieristico" key="Medico infermieristico"/>
+            <glz:ListItem value="Laurea: Ingegneria civile ed ambientale" key="Ingegneria civile ed ambientale"/>
+            <glz:ListItem value="Laurea: Ingegnere dell informazione" key="Ingegnere dell informazione"/>
+            <glz:ListItem value="Laurea: Ingegnere industriale" key="Ingegnere industriale"/>
+            <glz:ListItem value="Altro" key="Altro"/>
+        </glz:List>
+        <glz:List id="profile_profession" label="{i18n:Professione}"  emptyValue="-" multiSelect="true" rows="5">
+            <glz:ListItem value="Settore Scientifico: Scienze matematiche, fisiche, naturali" key="Scienze matematiche, fisiche, naturali"/>
+            <glz:ListItem value="Settore Scientifico: Scienze della vita" key="Scienze della vita"/>
+            <glz:ListItem value="Settore Scientifico: Scienze motorie" key="Scienze motorie"/>
+            <glz:ListItem value="Settore Sanitario: Scienze della salute" key="Scienze della salute"/>
+            <glz:ListItem value="Settore Economico: Area delle scienze economiche e gestionali" key="Area delle scienze economiche e gestionali"/>
+            <glz:ListItem value="Settore Giuridico e Politico-Sociale: Scienze giuridiche" key="Scienze giuridiche"/>
+            <glz:ListItem value="Settore Giuridico e Politico-Sociale: Scienze sociali" key="Scienze sociali"/>
+            <glz:ListItem value="Settore Umanistico: Discipline linguistiche, letterarie e documentali" key="Discipline linguistiche, letterarie e documentali"/>
+            <glz:ListItem value="Settore Umanistico: Discipline culturali e artistiche" key="Discipline culturali e artistiche"/>
+            <glz:ListItem value="Settore Umanistico: Educazione e insegnamento" key="Educazione e insegnamento"/>
+        </glz:List>
+    </glz:Fieldset>
+
+    <glz:Fieldset label="Metadati Dublin Core">
+        <glz:Input id="publisher" label="{i18n:Editore}" disabled="{php:$this->_user->groupId != 1}" data="index=id:int;type=selectfrom;add_new_values=true;model=desiderataLibrary.models.Editor;field=editor_name;get_id=true;return_object=true;" />
+        <glz:Input id="keywords" label="{i18n:Keywords}" data="type=selectfrom;multiple=true;add_new_values=true;proxy=org.glizycms.contents.models.proxy.ContentFindTermProxy;proxy_params={&quot;multisite&quot;:false};index=text"  />
+        <glz:Input id="subject" label="{i18n:Argomento}" data="type=selectfrom;multiple=true;add_new_values=true;proxy=org.glizycms.contents.models.proxy.ContentFindTermProxy;proxy_params={&quot;multisite&quot;:false};index=text"  />
+        <glz:LongText id="abstract" label="{i18n:Descrizione breve}" adm:rows="10" adm:cols="75" adm:htmlEditor="false" forceP="true" adm:wrap="auto" adm:required="true" />
+
+        <glz:Input id="dc_creator" label="{i18n:Creator}" size="90" />
+        <glz:Input id="dc_contributor" label="{i18n:Contributor}" size="90" />
+        <glz:Input id="dc_type" label="{i18n:Type}" size="90" />
+        <glz:Input id="dc_identifier" label="{i18n:Identifier}" size="90" />
+        <glz:Input id="dc_source" label="{i18n:Source}" size="90" />
+        <glz:Input id="dc_relation" label="{i18n:Releation}" size="90" />
+        <glz:Input id="dc_coverage" label="{i18n:Coverage}" size="90" />
+    </glz:Fieldset>
+</glz:Page>

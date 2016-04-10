@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:DataGridAjax id="dataGrid" recordClassName="org.glizycms.userManager.models.User" query="allUsers" cssClass="table table-bordered table-striped">
+            <glz:DataGridColumn columnName="user_firstName" headerText="{i18n:GLZ_USER_FIRST}" />
+            <glz:DataGridColumn columnName="user_lastName" headerText="{i18n:GLZ_USER_LAST}" />
+            <glz:DataGridColumn columnName="user_loginId" headerText="{i18n:user_loginId}" />
+            <glz:DataGridColumn columnName="user_email" headerText="{i18n:GLZ_USER_EMAIL}" />
+            <glz:DataGridColumn columnName="usergroup_name" headerText="{i18n:GLZ_USER_GROUP}" />
+            <glz:DataGridColumn columnName="user_isActive" headerText="{i18n:GLZ_USER_ACTIVE}" width="5" sortable="false" searchable="false" renderCell="org.glizycms.core.application.renderer.CellUserActive" />
+            <glz:DataGridColumn columnName="user_id" sortable="false" searchable="false" width="7" renderCell="org.glizycms.contents.views.renderer.CellEditDelete" />
+        </glz:DataGridAjax>
+
+        <glz:Link label="{i18n:GLZ_USER_ADD_NEW_RECORD}" cssClass="{config:glizycms.form.actionLink.cssClass}" icon="icon-plus" routeUrl="actionsMVCAdd" editableRegion="actions" acl="*,new"/>
+    </mvc:State>
+
+     <mvc:State name="edit">
+        <glz:DataDictionary id="usergroupsDP" recordClassName="org.glizycms.userManager.models.UserGroup" field="usergroup_id,usergroup_name" query="userGroupsAdmin" />
+        <cms:FormEdit id="myForm" controllerName="desiderataLibrary.modules.userManager.controllers.*">
+            <cms:pageTitleModifier action="edit" label="{i18n:New user}" new="true" />
+            <cms:pageTitleModifier action="edit" label="{i18n:Edit user}" new="false" field="user_loginId" />
+            <glz:Hidden id='__id' />
+            <glz:Hidden id="__model" value="org.glizy.models.User"/>
+            <glz:Hidden id="user_FK_usergroup_id" value="4"/>
+            <glz:Checkbox id="user_isActive" label="{i18n:GLZ_USER_IS_ACTIVE}" data="type=checkbox" />
+            <glz:Input id="user_loginId" label="{i18n:GLZ_USER_LOGINID}" size="90" required="true" />
+            <glz:Input id="user_password" label="{i18n:GLZ_USER_PASSWORD}" size="90" required="true" />
+            <glz:Input id="user_firstName" label="{i18n:GLZ_USER_FIRST}" size="90" required="true" />
+            <glz:Input id="user_lastName" label="{i18n:GLZ_USER_LAST}" size="90" required="true" />
+            <glz:Input id="user_email" label="{i18n:GLZ_USER_EMAIL}" size="90" required="true" type="email" />
+            <glz:Input id="user_age" label="{i18n:Età}" size="90" />
+            <glz:Input id="user_city" label="{i18n:Città}" size="90" />
+            <glz:List id="user_interests" label="{i18n:Interessi}" emptyValue="-" multiSelect="true" rows="5"> 
+                <glz:ListItem value="Affari e finanza" />
+                <glz:ListItem value="Ambiente" />
+                <glz:ListItem value="Animali" />
+                <glz:ListItem value="Arte e cultura" />
+                <glz:ListItem value="Auto e trasporti" />
+                <glz:ListItem value="Bellezza e stile" />
+                <glz:ListItem value="Casa e giardino" />
+                <glz:ListItem value="Computer e Internet" />
+                <glz:ListItem value="Elettronica di consumo" />
+                <glz:ListItem value="Folclore" />
+                <glz:ListItem value="Fotografia" />
+                <glz:ListItem value="Giochi e passatempi" />
+                <glz:ListItem value="Gravidanza e genitori" />
+                <glz:ListItem value="Mangiare e bere" />
+                <glz:ListItem value="Matematica e scienze" />
+                <glz:ListItem value="Musica e intrattenimento" />
+                <glz:ListItem value="Natura" />
+                <glz:ListItem value="Notizie ed eventi" />
+                <glz:ListItem value="Politica e governo" />
+                <glz:ListItem value="Relazioni e famiglia" />
+                <glz:ListItem value="Salute" />
+                <glz:ListItem value="Scienze sociali" />
+                <glz:ListItem value="Scuola ed educazione" />
+                <glz:ListItem value="Società e culture" />
+                <glz:ListItem value="Sport" />
+                <glz:ListItem value="Territorio: Sardegna" />
+                <glz:ListItem value="Turismo e viaggi" />
+            </glz:List>
+            <glz:List id="user_qualification" label="{i18n:Titolo di studio}"  emptyValue="-">
+                <glz:ListItem value="Diploma: Magistrale" key="Magistrale"/>
+                <glz:ListItem value="Diploma: Classico" key="Classico"/>
+                <glz:ListItem value="Diploma: Scientifico" key="Scientifico"/>
+                <glz:ListItem value="Diploma: Tecnico" key="Tecnico"/>
+                <glz:ListItem value="Diploma: Artistico ed arte applicata" key="Artistico ed arte applicata"/>
+                <glz:ListItem value="Diploma: Disegno industriale" key="Disegno industriale"/>
+                <glz:ListItem value="Diploma: Linguistico" key="Linguistico"/>
+                <glz:ListItem value="Diploma: Turistico ed alberghiero" key="Turistico ed alberghiero"/>
+                <glz:ListItem value="Diploma: Musicale e coreutica" key="Musicale e coreutica"/>
+                <glz:ListItem value="Laurea: Agronomo e forestale" key="Agronomo e forestale"/>
+                <glz:ListItem value="Laurea: Architetto" key="Architetto"/>
+                <glz:ListItem value="Laurea: Assistente sanitario" key="Assistente sanitario"/>
+                <glz:ListItem value="Laurea: Assistente sociale" key="Assistente sociale"/>
+                <glz:ListItem value="Laurea: Biologia e biotecnologie" key="Biologia e biotecnologie"/>
+                <glz:ListItem value="Laurea: Chimico" key="Chimico"/>
+                <glz:ListItem value="Laurea: Restauro e conservazione beni culturali" key="Restauro e conservazione beni culturali"/>
+                <glz:ListItem value="Laurea: Alimentazione" key="Alimentazione"/>
+                <glz:ListItem value="Laurea: Psicologia" key="Psicologia"/>
+                <glz:ListItem value="Laurea: Economia, contabilità e finanza" key="Economia, contabilità e finanza"/>
+                <glz:ListItem value="Laurea: Geologo" key="Geologo"/>
+                <glz:ListItem value="Laurea: Geometra laureato" key="Geometra laureato"/>
+                <glz:ListItem value="Laurea: Medico infermieristico" key="Medico infermieristico"/>
+                <glz:ListItem value="Laurea: Ingegneria civile ed ambientale" key="Ingegneria civile ed ambientale"/>
+                <glz:ListItem value="Laurea: Ingegnere dell informazione" key="Ingegnere dell informazione"/>
+                <glz:ListItem value="Laurea: Ingegnere industriale" key="Ingegnere industriale"/>
+                <glz:ListItem value="Altro" key="Altro"/>
+            </glz:List>
+            <glz:List id="user_profession" label="{i18n:Professione}"  emptyValue="-">
+                <glz:ListItem value="Settore Scientifico: Scienze matematiche, fisiche, naturali" key="Scienze matematiche, fisiche, naturali"/>
+                <glz:ListItem value="Settore Scientifico: Scienze della vita" key="Scienze della vita"/>
+                <glz:ListItem value="Settore Scientifico: Scienze motorie" key="Scienze motorie"/>
+                <glz:ListItem value="Settore Sanitario: Scienze della salute" key="Scienze della salute"/>
+                <glz:ListItem value="Settore Economico: Area delle scienze economiche e gestionali" key="Area delle scienze economiche e gestionali"/>
+                <glz:ListItem value="Settore Giuridico e Politico-Sociale: Scienze giuridiche" key="Scienze giuridiche"/>
+                <glz:ListItem value="Settore Giuridico e Politico-Sociale: Scienze sociali" key="Scienze sociali"/>
+                <glz:ListItem value="Settore Umanistico: Discipline linguistiche, letterarie e documentali" key="Discipline linguistiche, letterarie e documentali"/>
+                <glz:ListItem value="Settore Umanistico: Discipline culturali e artistiche" key="Discipline culturali e artistiche"/>
+                <glz:ListItem value="Settore Umanistico: Educazione e insegnamento" key="Educazione e insegnamento"/>
+            </glz:List>
+
+            <glz:Hidden id="licensesOther" />
+            <glz:Input id="licenses" label="{i18n:Licenze}" data="type=selectfrom;multiple=true;override=true;proxy=desiderataLibrary.modules.license.models.proxy.LicensePicker;return_object=true;get_id=true" />
+
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE}" type="button" cssClass="btn btn-primary js-glizycms-save" data="action=save" />
+                <glz:HtmlButton label="{i18n:GLZ_SAVE_CLOSE}" type="button" cssClass="btn js-glizycms-save" data="action=saveClose" />
+                <glz:HtmlButton label="{i18n:GLZ_CANCEL}" type="button" cssClass="btn js-glizycms-cancel" data="action=cancel" />
+            </cms:FormButtonsPanel>
+        </cms:FormEdit>
+    </mvc:State>
+
+    <mvc:State name="delete">
+        <glz:Hidden controllerName="org.glizycms.contents.controllers.activeRecordEdit.*" />
+        <glz:Hidden id="__model" value="org.glizy.models.User"/>
+    </mvc:State>
+
+</mvc:Page>

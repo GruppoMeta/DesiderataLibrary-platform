@@ -1,0 +1,4 @@
+<?php
+class desiderataLibrary_modules_editors_controllers_ajax_Cancel extends org_glizycms_contents_controllers_activeRecordEdit_ajax_Cancel
+{
+}

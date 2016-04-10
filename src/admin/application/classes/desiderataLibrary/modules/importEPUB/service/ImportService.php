@@ -1,0 +1,5 @@
+<?php
+class desiderataLibrary_modules_importEPUB_service_ImportService extends metacms_jobmanager_service_SimpleService
+{
+
+}

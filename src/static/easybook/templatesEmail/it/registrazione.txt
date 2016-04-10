@@ -1,0 +1,9 @@
+Benvenuto su Desiderata Library
+<p>Gentile ##FIRST_NAME## ##LAST_NAME##,</br>
+grazie per essersi registrato su <strong>DesiderataLibrary.</strong></p>
+<p>Potrà accedere alla piattaforma, utilizzando le credenziali inserite in fase di registrazione:<br>
+Nome utente: <strong>##LOGIN_ID##</strong><br>
+Password: <strong>##PASSWORD##</strong><br>
+<br/><br/>
+Cordiali saluti,<br/>
+Team DesiderataLibrary</p>

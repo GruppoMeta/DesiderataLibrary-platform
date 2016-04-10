@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Config xmlns:glz="http://www.glizy.org/dtd/1.0/">
+	<glz:Import src="##APPLICATION_TO_ADMIN##" />
+    <glz:Import src="config_common.xml" />
+    <glz:Param name="GLIZY_DOMAIN" value="{{env:GLIZY_DOMAIN}}" />
+    <glz:Param name="GLZ_HOST" value="{{GLIZY_DOMAIN}}/backoffice/wac" />
+</glz:Config>

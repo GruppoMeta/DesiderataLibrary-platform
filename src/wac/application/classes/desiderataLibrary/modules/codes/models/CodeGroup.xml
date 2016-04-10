@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+	xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+	model:tableName="codesgroup_tbl" model:usePrefix="true">
+
+    <model:Query name="list" type="function">
+    <![CDATA[
+        $expr = $iterator->expr();
+        $iterator->select('codegroup_name', 'codegroup_startDate', 'codegroup_id', 'editor_name', 'codegroup_licenses')
+                ->leftJoin('t1', $this->tablePrefix.'users_tbl', 't4', $expr->eq('user_id', 'codegroup_FK_user_id'))
+                ->leftJoin('t1', $this->tablePrefix.'editors_tbl', 't5', $expr->eq('editor_id', 'user_FK_editor_id'))
+                ->where('codegroup_deleted', 0);
+
+        $editorId = desiderataLibrary_WAC::getEditorId();
+        if ($editorId) {
+            $iterator->where('t4.user_FK_editor_id', $editorId);
+        }
+    ]]>
+    </model:Query>
+
+     <model:Query name="detail" type="function" arguments="id">
+    <![CDATA[
+        $expr = $iterator->expr();
+        $iterator->select('t1.*', 'editor_name', 'codegroup_licenses', 'user_FK_editor_id')
+                ->leftJoin('t1', $this->tablePrefix.'users_tbl', 't4', $expr->eq('user_id', 'codegroup_FK_user_id'))
+                ->leftJoin('t1', $this->tablePrefix.'editors_tbl', 't5', $expr->eq('editor_id', 'user_FK_editor_id'))
+                ->where('codegroup_deleted', 0)
+                ->where('codegroup_id', $id);
+    ]]>
+    </model:Query>
+</model:Model>

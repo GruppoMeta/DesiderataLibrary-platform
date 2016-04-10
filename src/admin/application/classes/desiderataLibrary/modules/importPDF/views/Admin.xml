@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    xmlns:evc="gruppometa.easybook.views.components.*"
+    controllerName="desiderataLibrary.modules.importPDF.controllers.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:JSscript folder="desiderataLibrary.modules.importPDF.js" />
+        <glz:Form id="myForm" removeGetValues="true">
+            <evc:MediaPicker id="sourceFile" label="{i18n:File da importare}" size="90" mediaType="PDF" required="true" />
+            <glz:HtmlButton id="btnNext" label="{i18n:Importa}" value="import" name="action" cssClass="btn" />
+        </glz:Form>
+    </mvc:State>
+</mvc:Page>

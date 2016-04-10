@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="gruppometa.easybook.models.comment" model:usePrefix="true" model:type="simpledocument">
+
+    <model:Define>
+        <model:Field name="userId" type="int" index="true"/>
+        <model:Field name="pubId" type="int" index="true"/>
+        <model:Field name="menuId" type="int" index="true"/>
+        <model:Field name="title" type="text" index="true" />
+        <model:Field name="text" type="text" index="true" />
+        <model:Field name="uid" type="text" index="true" />
+        <model:Field name="date" type="datetime" validator="datetime,notnull" index="true" />
+
+    </model:Define>
+
+
+    <model:Query name="getComments" type="function" arguments="menuId">
+    <![CDATA[
+        $iterator->select('*')
+            ->join('doc', 'simple_documents_index_int_tbl', 't2', 'doc.simple_document_id = t2.simple_document_index_int_FK_simple_document_id AND t2.simple_document_index_int_name = "userId"')
+            ->join('doc', 'users_tbl', 't3', 't2.simple_document_index_int_value = t3.user_id')
+             ->where('menuId', $menuId)
+            ->orderBy('date');
+    ]]>
+    </model:Query>
+
+    <model:Script parent="model">
+    <![CDATA[
+public function getVO($userId, $isAdmin)
+{
+    $vo = new StdClass;
+    $vo->user = $this->user_firstName.' '.$this->user_lastName;
+    $vo->pubId = $this->pubId;
+    $vo->pageId = $this->menuId;
+    $vo->id = $this->simple_document_id;
+    $vo->text = $this->text;
+    $vo->uid = $this->uid;
+    $vo->canEdit = $this->user_id == $userId || $isAdmin;
+    $vo->canDelete = $this->user_id == $userId || $isAdmin;
+    $vo->date = glz_defaultDate2locale( __T('GLZ_DATETIME_FORMAT'), $this->date->date );
+    return $vo;
+}
+    ]]>
+    </model:Script>
+
+</model:Model>

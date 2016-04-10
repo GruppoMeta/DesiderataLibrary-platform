@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:WebSite>
+    <glz:Page id="home">
+        <glz:Page id="userManager_alias" value="{i18n:Gestione utenti}" select="userManager" icon="icon-user" adm:acl="*" adm:aclPageTypes="userManager,userManagerBackoffice,groupManager,roleManager">
+            <glz:Page pageType="desiderataLibrary.modules.userManager.views.UserManagerEdit" id="userManager" value="{i18n:Utenti}" />
+            <glz:Page pageType="desiderataLibrary.modules.userManager.views.UserManagerBackofficeEdit" id="userManagerBackoffice" value="{i18n:Utenti backoffice}" />
+            <glz:Page pageType="org.glizycms.groupManager.views.GroupManagerEdit" id="groupManager" value="{i18n:Gruppi}" />
+        </glz:Page>
+        <glz:Page pageType="desiderataLibrary.modules.editors.views.Admin" id="editorManager" icon="icon-edit" value="{i18n:Editori}" adm:acl="*" />
+        <glz:Page pageType="desiderataLibrary.modules.libraries.views.Admin" id="librariesManager" icon="icon-book" value="{i18n:Biblioteche}" adm:acl="*" />
+        <glz:Page pageType="desiderataLibrary.modules.license.views.Admin" id="licenses" icon="icon-ok" value="{i18n:Licenze}" adm:acl="*" />
+        <glz:Page pageType="desiderataLibrary.modules.codes.views.Admin" id="codes" icon="icon-qrcode" value="{i18n:Gestione codici}" adm:acl="*" />
+        <glz:Page pageType="desiderataLibrary.modules.stats.views.Admin" id="stats" icon="icon-bar-chart" value="{i18n:Statistiche}" adm:acl="*" />
+        <glz:Page pageType="desiderataLibrary.modules.ecommerce.views.Admin" id="orders" icon="icon-money" value="{i18n:Ordini}" adm:acl="*" />
+        <glz:Page pageType="desiderataLibrary.modules.support.views.Admin" id="support" icon="icon-fire" value="{i18n:Assistenza}" adm:acl="*" />
+    </glz:Page>
+
+    <glz:Page pageType="Login" id="login" value="{i18n:Login}" />
+    <glz:Page pageType="Logout" id="Logout" value="{i18n:Logout}" />
+</glz:WebSite>

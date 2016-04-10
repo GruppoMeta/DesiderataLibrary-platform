@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pageTypes>
+    <pageType label="Separatore" name="Empty" class="button-article" acceptParent="Publication,Empty"/>
+    <pageType label="Separatore" name="EmptyPdf" class="button-article" acceptParent="PublicationPdf,EmptyPdf"/>
+    <pageType label="Testo" name="Text" class="button-article" acceptParent="Publication,Empty,Text" />
+    <pageType label="Testo" name="TextPdf" class="button-article" acceptParent="PublicationPdf,EmptyPdf,TextPdf" />
+</pageTypes>

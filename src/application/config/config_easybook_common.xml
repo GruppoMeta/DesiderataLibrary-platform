@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Config xmlns:glz="http://www.glizy.org/dtd/1.0/">
+    <glz:Param name="gruppometa.easybook.add.publication"><![CDATA[
+    [
+        {   "label": "Pubblicazione",
+            "type": "Publication",
+            "cover": "application/templates/img/easybook/cover.png",
+            "routeUrlNew": "linkPublicationNew",
+            "routeUrl": "linkPublicationContent",
+            "routeUrlDelete": "linkPublicationDelete",
+            "routeUrlMedia": "linkPublicationMedia",
+            "routeUrlMediaAction": "linkPublicationMediaAction",
+            "routeUrlMediaAdd": "linkPublicationMediaAdd",
+            "routeUrlMediaPicker": "linkPublicationMediaPicker",
+            "routeUrlMediaPickerAdd": "linkPublicationMediaPickerAdd",
+            "fe_cover": "static/images/cover.png",
+            "fe_coverResize": "[false, 137, 177, false, 1, false]",
+            "fe_coverSmall": "static/images/cover.png",
+            "fe_coverSmallResize": "[false, 115, 115, true, 1, false]"
+        },
+        {   "label": "Pubblicazione PDF",
+            "type": "PublicationPdf",
+            "cover": "application/templates/img/easybook/cover.png",
+            "routeUrlNew": "linkPublicationNew",
+            "routeUrl": "linkPublicationContentPdf",
+            "routeUrlDelete": "linkPublicationDelete",
+            "routeUrlMedia": "linkPublicationMediaPdf",
+            "routeUrlMediaAction": "linkPublicationMediaActionPdf",
+            "routeUrlMediaAdd": "linkPublicationMediaAddPdf",
+            "routeUrlMediaPicker": "linkPublicationMediaPickerPdf",
+            "routeUrlMediaPickerAdd": "linkPublicationMediaPickerAddPdf",
+            "fe_cover": "static/images/cover.png",
+            "fe_coverResize": "[false, 137, 177, false, 1, false]",
+            "fe_coverSmall": "static/images/cover.png",
+            "fe_coverSmallResize": "[false, 115, 115, true, 1, false]"
+        }
+    ]
+    ]]></glz:Param>
+</glz:Config>

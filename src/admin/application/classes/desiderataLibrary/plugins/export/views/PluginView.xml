@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    controllerName="desiderataLibrary.plugins.export.controllers.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:JSscript folder="desiderataLibrary.plugins.export.js" />
+        <glz:SearchFilters id="filters" addValidationJs="false" filterClass="gruppometa.easybook.views.filters.Publication" cssClass="row-fluid stickyForm">
+            <glz:Hidden id="menuId" />
+
+            <glz:DataProvider id="ModuleDP" recordClassName="gruppometa.easybook.models.Publication" query="getPublications" />
+            <glz:RecordSetList id="list" dataProvider="{ModuleDP}" title="Risultati ricerca" filters="{filters}" skin="Publication_export_list.html" processCell="gruppometa.easybook.views.renderer.CellPublication">
+            </glz:RecordSetList>
+
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton id="btnNext" label="{i18n:Esporta}" value="export" name="action" cssClass="btn" />
+                <glz:HtmlButton id="btnRemove" label="{i18n:Rimuovi dall'indice}" value="remove" name="action" cssClass="btn" />
+            </cms:FormButtonsPanel>
+        </glz:SearchFilters>
+    </mvc:State>
+</mvc:Page>

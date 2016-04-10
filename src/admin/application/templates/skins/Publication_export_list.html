@@ -1,0 +1,16 @@
+<div tal:condition="php: !is_null(Component.records)">
+  <ul class="entities publication" tal:condition="php: Component.records.count() > 0">
+    <li tal:repeat="item Component/records" tal:attributes="data-menuid item/menu_id">
+      <img tal:attributes="alt item/menudetail_title; src item/document/coverImg" />
+      <div class="description">
+        <h5 tal:content="item/menudetail_title"></h5>
+        <small>ultima modifica <span tal:content="item/menu_modificationDate" /></small>
+        <span tal:omit-tag="" tal:condition="php: item.menu_pageType=='PublicationPdf'"><br />PDF</span>
+      </div>
+
+      <div class="state public" tal:condition="php: item.document.state == '2'">pubblicata</div>
+      <div class="state no-public" tal:condition="php: item.document.state == '1'">in revisione</div>
+      <div class="state no-public" tal:condition="php: item.document.state == '0'">non pubblicata</div>
+    </li>
+  </ul>
+</div>

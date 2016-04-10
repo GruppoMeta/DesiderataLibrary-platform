@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    xmlns:c="desiderataLibrary.modules.license.views.components.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:DataGridAjax id="dataGrid" recordClassName="desiderataLibrary.modules.license.models.Publication" query="getAllPublications" cssClass="table table-bordered table-striped" setFiltersToQuery="true">
+            <glz:DataGridColumn columnName="menudetail_title" headerText="{i18n:Pubblicazione}" />
+            <glz:DataGridColumn columnName="menu_id" sortable="false" searchable="false" cssClass="actions" renderCell="desiderataLibrary.modules.license.views.renderer.CellEdit" />
+        </glz:DataGridAjax>
+    </mvc:State>
+
+    <mvc:State name="show">
+        <c:LicenseForPublication controllerName="desiderataLibrary.modules.license.controllers.*" />
+
+        <glz:Form>
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:Scarica CSV}" type="button" cssClass="btn" routeUrl="linkDownloadCsv" />
+                <glz:HtmlButton label="{i18n:Indietro}" type="button" cssClass="btn" routeUrl="linkCurrentPage" />
+            </cms:FormButtonsPanel>
+        </glz:Form>
+    </mvc:State>
+
+    <mvc:State name="download">
+        <glz:Hidden controllerName="desiderataLibrary.modules.license.controllers.*" />
+    </mvc:State>
+
+</mvc:Page>

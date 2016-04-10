@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Acl>
+    <glz:AclService name="userManager_alias" default="false">
+        <glz:AclAction name="visible" allowGroups="1,2,6" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="userManager" default="false">
+        <glz:AclAction name="visible" allowGroups="1,2,6" allowUsers="" />
+        <glz:AclAction name="new" allowGroups="1,2,6" allowUsers="" />
+        <glz:AclAction name="edit" allowGroups="1,2,6" allowUsers="" />
+        <glz:AclAction name="delete" allowGroups="1,2" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="userManagerBackoffice" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="new" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="edit" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="delete" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="groupManager" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="new" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="edit" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="delete" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="editorManager" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="new" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="edit" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="delete" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="codes" default="false">
+        <glz:AclAction name="visible" allowGroups="1,2" allowUsers="" />
+        <glz:AclAction name="new" allowGroups="1,2" allowUsers="" />
+    </glz:AclService>
+     <glz:AclService name="licenses" default="false">
+        <glz:AclAction name="visible" allowGroups="1,2" allowUsers="" />
+    </glz:AclService>
+     <glz:AclService name="stats" default="false">
+        <glz:AclAction name="visible" allowGroups="1,2" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="librariesManager" default="false">
+        <glz:AclAction name="visible" allowGroups="1,2" allowUsers="" />
+        <glz:AclAction name="new" allowGroups="1,2" allowUsers="" />
+        <glz:AclAction name="edit" allowGroups="1,2" allowUsers="" />
+        <glz:AclAction name="delete" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+     <glz:AclService name="orders" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="support" default="false">
+       <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+   </glz:AclService>
+</glz:Acl>

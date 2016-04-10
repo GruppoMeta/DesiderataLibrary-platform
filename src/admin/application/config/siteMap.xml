@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:WebSite>
+    <glz:Page pageType="gruppometa.easybook.views.Publications" id="Home" value="{i18n:Home}" icon="icon-home">
+        <glz:Page pageType="gruppometa.easybook.views.Publications" id="pubblicazioni" value="{i18n:Pubblicazioni}" icon="icon-file" />
+
+        <glz:Page id="ob_OntologyBuilder_alias" value="{i18n:Ontologia}" select="ob_OntologyBuilder" icon="icon-sitemap" adm:acl="*" adm:aclPageTypes="ob_OntologyBuilder,ob_RelationsEditor,ob_Graph,ob_ContentsEditor">
+        </glz:Page>
+
+        <glz:Page pageType="gruppometa.easybook.views.Plugins" select="indicizza-publicazioni" id="pluginsContainer" value="{i18n:Plugins}" icon="icon-tasks">
+            <glz:Page id="SubMenuPlugin">
+                <glz:Page pageType="desiderataLibrary.plugins.export.views.PluginView" id="indicizza-publicazioni" value="{i18n:Indicizza pubblicazioni}"  />
+                <glz:Page pageType="gruppometa.jobmanager.views.Jobs" id="pluginsReport" value="{i18n:Report}" />
+            </glz:Page>
+        </glz:Page>
+    </glz:Page>
+
+    <!-- sottomenu -->
+    <glz:Page id="SubMenuContent">
+        <glz:Page id="SubMenuContent1">
+           <!-- PUBBLICAZIONE -->
+            <glz:Page pageType="gruppometa.easybook.views.ContentsEdit" id="easybookContentsEdit" value="{i18n:Contenuto}" url="route:linkPublicationContent" adm:acl="*" adm:aclLabel="Gestione pagine">
+                <glz:Page pageType="gruppometa.easybook.modules.mediaArchive.views.MediaArchive" id="MediaArchive" value="{i18n:Archivio media}" url="route:linkPublicationMedia" icon="icon-picture" adm:acl="a,m,n,c,v" />
+                <glz:Page pageType="desiderataLibrary.modules.importEPUB.views.Admin" id="ImportEPUB" value="{i18n:Importa ePub}" url="route:linkPublicationImport" icon="icon-picture" adm:acl="a,m,n,c,v" />
+                <glz:Page pageType="desiderataLibrary.modules.exportEPUB.views.Admin" id="ExportEPUB" value="{i18n:Esporta ePub}" url="route:linkPublicationExport" icon="icon-picture" adm:acl="a,m,n,c,v" />
+            </glz:Page>
+
+            <!-- PDF -->
+            <glz:Page pageType="gruppometa.easybook.views.ContentsEdit" id="pdfContentsEdit" value="{i18n:Contenuto}" url="route:linkPublicationContentPdf" adm:acl="*" adm:aclLabel="Gestione pagine">
+                <glz:Page pageType="gruppometa.easybook.modules.mediaArchive.views.MediaArchive" id="pdfMediaArchive" value="{i18n:Archivio media}" url="route:linkPublicationMediaPdf" icon="icon-picture" adm:acl="a,m,n,c,v" />
+                <glz:Page pageType="desiderataLibrary.modules.importPDF.views.Admin" id="importPDF" value="{i18n:Importa PDF}" url="route:linkPublicationImportPdf" icon="icon-picture" adm:acl="a,m,n,c,v" />
+            </glz:Page>
+
+            <glz:Page id="ob_OntologyBuilder_alias2" value="{i18n:Ontologia}" select="ob_OntologyBuilder" icon="icon-sitemap">
+                <glz:Page pageType="desiderataLibrary.modules.ontologybuilder.views.OntologyBuilder" id="ob_OntologyBuilder" value="{i18n:Entità ontologia}" url="route:linkOntologyBuilder" />
+                <glz:Page pageType="desiderataLibrary.modules.ontologybuilder.views.RelationsEditor" id="ob_RelationsEditor" value="{i18n:Relazioni ontologia}" url="route:linkRelationsEditor" />
+                <glz:Page pageType="desiderataLibrary.modules.ontologybuilder.views.Graph" id="ob_Graph" value="{i18n:Grafo ontologia}" url="route:linkGraph" />
+                <glz:Page pageType="desiderataLibrary.modules.ontologybuilder.views.ContentsEditor" id="ob_ContentsEditor" value="{i18n:Contenuti ontologia}" url="route:linkContentsEditor"/>
+            </glz:Page>
+        </glz:Page>
+    </glz:Page>
+
+<!-- pagine non nel menù  -->
+    <glz:Page pageType="Login" id="login" value="{i18n:Login}" />
+    <glz:Page pageType="Logout" id="Logout" value="{i18n:Logout}" />
+    <glz:Page pageType="gruppometa.easybook.modules.mediaArchive.views.MediaPicker" id="MediaArchive_picker"  />
+    <glz:Page pageType="gruppometa.easybook.modules.mediaArchive.views.MediaPicker" id="MediaArchive_pickerTiny" />
+	<glz:Page pageType="CustomStorageBrowser" id="CustomStorageBrowser" />
+
+</glz:WebSite>

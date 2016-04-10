@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="documents_tbl" model:usePrefix="true">
+
+    <model:Query name="getMenuIdFromExternalId" type="function" arguments="pubId,id">
+    <![CDATA[
+        $iterator->select('document_index_int_value', 'menudetail_title')
+            ->join('t1', 'documents_detail_tbl', 't2', 't1.document_id = t2.document_detail_FK_document_id')
+            ->join('t1', 'documents_index_text_tbl', 't3', 't3.document_index_text_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'documents_index_int_tbl', 't4', 't4.document_index_int_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'menudetails_tbl', 't5', 't5.menudetail_FK_menu_id = t4.document_index_int_value')
+            ->where('document_FK_site_id', $pubId)
+            ->where('document_index_text_name', 'refId')
+            ->where('document_index_text_value', $id)
+            ->orderBy('document_index_int_value', 'DESC');
+    ]]>
+    </model:Query>
+    <model:Query name="getMenuIdFromExternalIdNoPub" type="function" arguments="id">
+    <![CDATA[
+        $iterator->select('document_index_int_value', 'menudetail_title')
+            ->join('t1', 'documents_detail_tbl', 't2', 't1.document_id = t2.document_detail_FK_document_id')
+            ->join('t1', 'documents_index_text_tbl', 't3', 't3.document_index_text_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'documents_index_int_tbl', 't4', 't4.document_index_int_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'menudetails_tbl', 't5', 't5.menudetail_FK_menu_id = t1.document_FK_site_id')
+            ->where('document_index_text_name', 'refId')
+            ->where('document_index_text_value', $id)
+            ->orderBy('document_index_int_value', 'DESC');
+    ]]>
+    </model:Query>
+    <model:Query name="getMenuFromTags" type="function" arguments="pubId,entityId,contentId">
+    <![CDATA[
+        $iterator->select('t5.menu_id', 't5.menu_pageType', 't6.menudetail_title', 't6p.menudetail_title as parentTitle',  't5.menu_parentId as parentId', 't3.document_index_int_value', 't2.document_detail_object')
+            ->join('t1', 'documents_detail_tbl', 't2', 't1.document_id = t2.document_detail_FK_document_id')
+            ->join('t1', 'documents_index_int_tbl', 't3', 't3.document_index_int_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'documents_index_int_tbl', 't4', 't4.document_index_int_FK_document_detail_id = t2.document_detail_id AND t4.document_index_int_name = "id"')
+            ->join('t1', 'documents_index_text_tbl', 't7', 't7.document_index_text_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'menus_tbl', 't5', 't5.menu_id = t4.document_index_int_value')
+            ->join('t1', 'menudetails_tbl', 't6', 't6.menudetail_FK_menu_id = t5.menu_id')
+            ->join('t1', 'menudetails_tbl', 't6p', 't6p.menudetail_FK_menu_id = t5.menu_parentId')
+            ->where('document_FK_site_id', $pubId)
+            ->where('document_detail_status', 'PUBLISHED')
+            ->where('t6.menudetail_isVisible', 1)
+            ->groupBy('t5.menu_id')
+            ->orderBy('t6.menudetail_title');
+
+            if ($entityId) {
+                $iterator->where('t7.document_index_text_name', 'tagstype')
+                         ->where('t7.document_index_text_value', 'Entità')
+                         ->where('t3.document_index_int_name', 'tagsid')
+                         ->where('t3.document_index_int_value', $entityId);
+            }
+
+            if ($contentId) {
+                $iterator->where('t7.document_index_text_name', 'tagstype')
+                         ->where('t7.document_index_text_value', 'Contenuto')
+                         ->where('t3.document_index_int_name', 'tagsid')
+                         ->where('t3.document_index_int_value', $contentId);
+            }
+    ]]>
+    </model:Query>
+
+    <model:Query name="getMenuFromTagsOnlyParent" type="function" arguments="pubId,entityId,contentId">
+    <![CDATA[
+        $iterator->select('DISTINCT t5.menu_parentId', 't5.menu_id', 't6.menudetail_title', 't3.document_index_int_value', 't2.document_detail_object')
+            ->join('t1', 'documents_detail_tbl', 't2', 't1.document_id = t2.document_detail_FK_document_id')
+            ->join('t1', 'documents_index_int_tbl', 't3', 't3.document_index_int_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'documents_index_int_tbl', 't4', 't4.document_index_int_FK_document_detail_id = t2.document_detail_id AND t4.document_index_int_name = "id"')
+            ->join('t1', 'documents_index_text_tbl', 't7', 't7.document_index_text_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'menus_tbl', 't5', 't5.menu_id = t4.document_index_int_value')
+            ->join('t1', 'menudetails_tbl', 't6', 't6.menudetail_FK_menu_id = t5.menu_parentId')
+            ->where('document_FK_site_id', $pubId)
+            ->where('document_detail_status', 'PUBLISHED')
+            ->orderBy('t6.menudetail_title');
+
+            if ($entityId) {
+                $iterator->where('t7.document_index_text_name', 'tagstype')
+                         ->where('t7.document_index_text_value', 'Entità')
+                         ->where('t3.document_index_int_name', 'tagsid')
+                         ->where('t3.document_index_int_value', $entityId);
+            }
+
+            if ($contentId) {
+                $iterator->where('t7.document_index_text_name', 'tagstype')
+                         ->where('t7.document_index_text_value', 'Contenuto')
+                         ->where('t3.document_index_int_name', 'tagsid')
+                         ->where('t3.document_index_int_value', $contentId);
+            }
+    ]]>
+    </model:Query>
+
+    <model:Query name="searchInPublication" type="function" arguments="pubId,search">
+    <![CDATA[
+        $search = $this->getConnection()->quote($search);
+        $iterator->select('t5.menu_id', 't5.menu_parentId', 't6.menudetail_title', 't2.document_detail_object', 'MATCH(t3.document_index_fulltext_value) AGAINST('.$search.' in boolean mode) as score' )
+            ->join('t1', 'documents_detail_tbl', 't2', 't1.document_id = t2.document_detail_FK_document_id')
+            ->join('t1', 'documents_index_fulltext_tbl', 't3', 't3.document_index_fulltext_FK_document_detail_id = t2.document_detail_id')
+            ->join('t1', 'documents_index_int_tbl', 't4', 't4.document_index_int_FK_document_detail_id = t2.document_detail_id AND t4.document_index_int_name = "id"')
+            ->join('t1', 'menus_tbl', 't5', 't5.menu_id = t4.document_index_int_value')
+            ->join('t1', 'menudetails_tbl', 't6', 't6.menudetail_FK_menu_id = t5.menu_id')
+            ->where('document_FK_site_id', $pubId)
+            ->where('t3.document_index_fulltext_name', 'fulltext')
+            ->where('t5.menu_pageType', 'Text', '=')
+            ->where('MATCH(t3.document_index_fulltext_value) AGAINST('.$search.' in boolean mode)' )
+            ->orderBy('score', 'DESC')
+            ->orderBy('t6.menudetail_title')
+            ->groupBy('t5.menu_id');
+    ]]>
+    </model:Query>
+</model:Model>

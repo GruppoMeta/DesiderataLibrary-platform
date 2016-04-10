@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:type="2tables"
+    model:tableName="tags_tbl,tagdetails_tbl"
+    model:joinFields="tag_id,tagdetail_FK_tag_id"
+    model:usePrefix="true">
+
+    <model:Query name="getContents"><![CDATA[
+SELECT *
+FROM tags_tbl
+JOIN tagdetails_tbl ON tags_tbl.tag_id = tagdetails_tbl.tagdetail_FK_tag_id
+WHERE tag_FK_user_id = :user_id AND tagdetail_keyword IN ##tagdetail_keyword##
+GROUP BY tag_volume_id, tag_content_id
+    ]]></model:Query>
+
+    <model:Query name="getCategories"><![CDATA[
+SELECT DISTINCT(tagdetail_keyword)
+FROM tags_tbl
+JOIN tagdetails_tbl ON tags_tbl.tag_id = tagdetails_tbl.tagdetail_FK_tag_id
+WHERE tag_FK_user_id = :user_id
+    ]]></model:Query>
+
+</model:Model>

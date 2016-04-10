@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Config xmlns:glz="http://www.glizy.org/dtd/1.0/">
+    <glz:Import src="config_common.xml" />
+    <glz:Param name="DB_TYPE" value="mysql" />
+    <glz:Param name="DB_HOST" value="{{env:MYSQL_HOST}}" />
+    <glz:Param name="DB_NAME" value="{{env:MYSQL_DB}}" />
+    <glz:Param name="DB_USER" value="{{env:MYSQL_USER}}" />
+    <glz:Param name="DB_PSW" value="{{env:MYSQL_PASS}}" />
+    <glz:Param name="DB_PREFIX" value="" />
+    <glz:Param name="desiderataLibrary.fe.url" value="{{env:DESIDERATA_BASE_URL}}" />
+    <glz:Param name="desiderataLibrary.solr.url" value="{{env:DESIDERATA_SOLR_URL}}"/>
+    <glz:Param name="desiderataLibrary.importPDF.folder" value="{{env:DESIDERATA_PDF_IMPORT_FOLDER}}"/>
+    <glz:Param name="desiderataLibrary.importPDF.exportFolder" value="{{env:DESIDERATA_PDF_EXPORT_FOLDER}}"/>
+    <glz:Param name="desiderataLibrary.importPDF.pdfImportServiceUrl" value="{{env:DESIDERATA_PIPELINE_URL}}"/>
+    <glz:Param name="desiderataLibrary.importPDF.callBackUrl" value="{{env:DESIDERATA_PIPELINE_CALLBACK_URL}}"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.backdoor.key" value="{{env:DESIDERATA_EXPORT_CHECK_KEY}}"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.backdoor.value" value="{{env:DESIDERATA_EXPORT_CHECK_VALUE}}"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.drm" value="{{env:DESIDERATA_DRM_ENABLED}}"/>
+    <glz:Param name="desiderataLibrary.ecommerce.email" value="{{env:DESIDERATA_ECOMM_EMAIL}}"/>
+    <glz:Param name="desiderataLibrary.support.email" value="{{env:DESIDERATA_SUPPORT_EMAIL}}"/>
+    <glz:Param name="desiderataLibrary.recommender.host" value="{{env:DESIDERATA_RECOMMENDER_URL}}"/>
+    <glz:Param name="desiderata.hashids.salt" value="{{env:DESIDERATA_SALT}}"/>
+
+    <glz:Param name="GLIZY_DOMAIN" value="{{env:GLIZY_DOMAIN}}" />
+    <glz:Param name="GLZ_HOST" value="{{GLIZY_DOMAIN}}/backoffice" />
+</glz:Config>

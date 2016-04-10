@@ -1,0 +1,542 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic);
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: 'PT Sans', sans-serif;
+	padding: 0 !important;
+}
+
+
+body>#outer {
+    height:auto;
+    min-height:100%;
+	width:100%;
+	position:relative;
+	}
+
+label,
+select,
+button,
+input[type="text"],
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+  font-family: 'PT Sans', sans-serif;
+   font-size: 15px;
+}
+
+input[type="search"] {
+  font-family: 'PT Sans', sans-serif;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+	font-family: 'PT Sans', sans-serif;
+}
+
+
+a {
+	color:@orange8;
+}
+a:hover {
+	color: @orange5;
+	text-decoration: underline;
+}
+
+/*.alert {
+	background-color:@red1;
+    border: 1px solid @red;
+	}	*/
+
+footer {
+	position: absolute;
+	text-align:right;
+	color:@grey20;
+	font-size:13px;
+	padding-top:0;
+	height:34px;
+	right:10px;
+	padding-bottom:15px!important;
+	margin-right:0px;
+
+	p {
+		.margin-reset();
+		.padding-reset();
+		font-style:italic;
+		padding-top:10px;
+		position:relative;
+		}
+
+	}
+
+.form-vertical .control-group {
+	padding-bottom:0;
+	margin-bottom:0;
+
+	input[type="text"] {
+		padding:0!important;
+		font-size:12px;
+		margin-bottom:0;
+		}
+
+	input[type="text"][class*="span"] {
+    min-height:0px;
+	}
+
+
+	}
+
+.btn {
+	font-size:13px;
+	}
+
+a.thumbnail:hover {
+  border-color:@orange8;
+  }
+
+.alert {
+
+	.close {
+		margin-top:2px;
+		}
+
+	border-radius:0;
+
+	&.welcome {
+
+		border-color:@light-blue;
+		background-color:@light-blue2;
+
+		&.alert-info {
+		color:@light-blue3;
+		}
+
+		}
+
+	&.alert-info {
+	color:@black2;
+	}
+
+	}
+
+.label {
+	font-weight:lighter;
+	}
+
+.box.margin-top {
+	margin-top:10px;
+	}
+
+/* action-link */
+
+	a.action-link {
+	float: left;
+	display: block;
+	color: @grey14;
+	font-weight: normal;
+	padding: 2px 10px 1px 10px;
+	margin-right: 10px;
+	margin-top: 6px;
+	font-size: 13px;
+	font-style: normal;
+
+	&.btn {
+		border:0;
+		background:none;
+		box-shadow:none;
+		font-size:13px;
+		text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+		}
+
+	&.btnBig {
+		font-size: 15px;
+	}
+
+	i {
+			margin-top: 0px;
+	}
+
+	&:hover {
+		text-decoration: none;
+		background-color: @grey9;
+		color:@black!important;
+		background:none!important;
+	}
+
+	&:focus {
+		outline: 0;
+	}
+
+	&.with-background  {
+		background-color: @grey;
+	}
+
+	&.with-background:hover {
+		background-color: @grey10!important;
+		text-decoration: none;
+		color: @white!important;
+	}
+
+	&.with-background:hover i {
+		/*background-image: url('../img/glyphicons-halflings-white.png');*/
+	}
+
+	}
+
+.action-link.btn-primary.btn {
+	border:0;
+	background:none;
+	box-shadow:none;
+	float: left;
+	display: block;
+	color: @grey14;
+	font-weight: 400;
+	padding:3px 10px 1px 10px;
+	margin-right: 10px;
+	margin-top: 6px;
+	font-size: 13px;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	}
+
+div.afterTableActions {
+	margin: 20px 0;
+	text-align: center;
+
+	a.action-link {
+		float: none;
+	}
+}
+
+#topbar {
+
+	a.action-link {
+
+		&.btn {
+			text-shadow:none;
+			}
+
+	}
+
+	.dropdown-menu {
+
+			li {
+
+				a {
+					color:#black2;
+				}
+
+			}
+
+		}
+
+}
+
+#language-menu {
+
+	.btn-group {
+
+		a.action-link {
+
+				&.btn {
+					margin:0;
+					margin-top:-3px;
+					}
+
+			}
+
+		.dropdown-menu {
+
+
+			li {
+
+
+				a {
+					color:@black2;
+					text-indent:0;
+					font-size:13px;
+					padding-left:10px!important;
+
+					&:hover {
+						color:@white;
+						}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+/* collapse menu */
+
+.show-nav-for-iphone {
+	display:none;
+	}
+
+#nav-collapse.collapse {
+		height:auto;
+		}
+
+@media (max-width: 768px) {
+	#nav-collapse.collapse {
+		height:0;
+		}
+}
+
+
+@media (max-width: 768px) {
+	.show-nav-for-iphone {
+	display:block;
+	position:absolute;
+	right:7px;
+	top:7px;
+	background:@orange3 url("../img/glyphicons-halflings-white.png") -332px -44px no-repeat;
+	width:24px;
+	height:24px;
+	border:0;
+	border:1px solid @orange4;
+	padding:0;
+	z-index:9999;
+	}
+
+}
+
+.thumbnail {
+  min-height:130px;
+}
+
+
+/* solr */
+
+.widget .nav.nav-tabs {
+	margin-top:5px;
+	}
+
+.widget .nav.nav-tabs li  {
+	border-bottom:0;
+	background:none;
+	margin:0;
+	padding:0;
+	margin-bottom:-1px;
+	border:1px solid #DDDDDD;
+	margin-right:3px;
+	padding:4px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+
+.widget .nav.nav-tabs li:hover {
+	background:#eee;
+	}
+
+.widget .nav.nav-tabs li.active {
+	background:#fff;
+	}
+
+.widget .nav.nav-tabs li.active a {
+	color:#990000;
+	}
+
+.widget .nav.nav-tabs li a {
+	border:0;
+	margin:0;
+	padding:0;
+	}
+
+.widget .nav.nav-tabs li a:hover {
+	text-decoration:none;
+	}
+
+.jstree-default {
+	background:none!important;
+	}
+
+.jstree-default li {
+	border:0;
+	}
+
+.jstree-no-dots .jstree-icon.category {
+	background:url('../img/ico-tree/cat.png') 0 0 no-repeat;
+	height:14px;
+	width:12px;
+	margin-top:3px;
+	float:left;
+	}
+
+.jstree-no-dots .jstree-icon.category.size_1 {
+	background:url('../img/ico-tree/cat-size-1.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.category.size_2 {
+	background:url('../img/ico-tree/cat-size-2.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.category.size_3 {
+	background:url('../img/ico-tree/cat-size-3.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.category.size_4 {
+	background:url('../img/ico-tree/cat-size-4.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.category.size_5 {
+	background:url('../img/ico-tree/cat-size-5.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.ne_domain {
+	background:url('../img/ico-tree/ned.png') 0 0 no-repeat;
+	height:14px;
+	width:12px;
+	margin-top:3px;
+	float:left;
+	}
+
+.jstree-no-dots .jstree-icon.ne_domain.size_1 {
+	background:url('../img/ico-tree/ned-size-1.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.ne_domain.size_2 {
+	background:url('../img/ico-tree/ned-size-2.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.ne_domain.size_3 {
+	background:url('../img/ico-tree/ned-size-3.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.ne_domain.size_4 {
+	background:url('../img/ico-tree/ned-size-4.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-no-dots .jstree-icon.ne_domain.size_5 {
+	background:url('../img/ico-tree/ned-size-5.png') 0 0 no-repeat;
+	width:24px;
+	}
+
+.jstree-default .jstree-hovered {
+    padding: 1px 2px !important;
+}
+
+
+
+form.solrSearchForm{padding-bottom:15px;}
+form.solrSearchForm input.long{width:50%;}
+div.solr.solrFacet{}
+div.solr.solrFacet h3{margin:0;padding-bottom:0.2em; color:#A0A0A0;}
+div.solr.solrFacet h4{margin:20px 0 5px 0;font-size:16px;}
+div.solr.solrFacet ul{list-style:none;margin:0;padding:0;}
+div.solr.solrFacet ul li{padding:0 8px;}
+div.solr.solrFacet ul li a{text-decoration:none;color:#505050;}
+div.solr.solrFacet ul li a:hover{text-decoration:underline;}
+div.solr.solrFacet ul li.current{font-weight:bold;}
+div.solr.solrFacet ul{font-size:14px;font-weight:normal;line-height:14px;margin:0;padding:0;}
+div.solr.solrFacet ul li{border-bottom:1px dashed #DDDDDD;padding:2px 0 2px 18px;background:url(../img/solr_i_addFacet.gif) no-repeat 0 5px;margin-bottom:2px;}
+div.solr.solrFacet ul li a{color:#505050;padding:0;}
+div.solr.solrFacet ul.selected {font-weight:bold;}
+div.solr.solrFacet ul.selected li{background:url(../img/solr_i_removeFacet.gif) no-repeat 0 5px;}
+div.solr.solrFacet ul.selected li a{color:#505050;}
+div.solr.solrResults h2 {border-bottom: 1px solid #c0c0c0;margin:0;padding-bottom:0;}
+div.solr.solrResults p.solrTotal{font-size:12px;}
+div.solr.solrResults div{border-bottom:1px solid #f0f0f0;margin:25px 0 5px 0;}
+div.solr.solrResults h4 {font-size: 20px; margin: 5px 0; color: #990000;}
+div.solr.solrResults div p {margin: 0; line-height: 1.5em;}
+div.solr.solrResults p.solrInfo{font-size:13px; margin: 5px 0 0 0; line-height: 2em;}
+div.solr.solrResults p.solrInfo span{float:right;}
+div.solr.solrResults p.solrInfo a.show{text-decoration:none;padding:0 18px;background:url(../img/solr_i_show.gif) no-repeat 0 5px; float: left;}
+div.solr.solrFacet ul.toggle li.more,
+div.solr.solrFacet ul.toggle li.show-less-link,
+div.solr.solrFacet ul.toggle.show li.show-more-link  {
+  display: none;
+}
+
+div.solr.solrFacet ul.toggle.show li.more,
+div.solr.solrFacet ul.toggle.show li.show-less-link {
+  display: block;
+}
+
+div.solr.solrFacet ul.toggle li.show-more-link {
+  border-bottom: 0;
+}
+
+div.solr .results-save {
+	display: none;
+}
+
+.align-left:last-child {
+    margin-right: 0;
+}
+.align-left {
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
+    width: auto !important;
+}
+.formItem .formButtons {
+    padding-top: 24px;
+    margin: 0;
+    border: 0;
+}
+
+.row-form .control-group {
+    max-width: 750px;
+    padding-right: 5px;
+    width: 99%;
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
+}
+.row-form .control-group .long {
+	width: 100%;
+}
+
+input.ico-search[type="text"] {
+    background: url("../img/search.png") no-repeat scroll 99% 4px rgba(0, 0, 0, 0);
+}
+
+.formItem label, .formItemRigthLabel label {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+.properties dt {
+    clear: left;
+    width: 15%;
+}
+.properties dd, .properties dt {
+    float: left;
+    margin: 0;
+    padding: 8px 0;
+}
+
+.dropdown-menu ul li {
+	float: none !important;
+
+	a {
+		border: 0 !important;
+	}
+}
+
+a.logout {
+  margin-left: 10px;
+}

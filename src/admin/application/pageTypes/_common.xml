@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:EmptyComponent
+	xmlns:glz="http://www.glizy.org/dtd/1.0/">
+
+    <glz:Authenticator accessPageId="Login" logoutPageId="Logout" cssClass="logout" editableRegion="logout" showWelcome="true" />
+
+    <glz:NavigationMenu id="menu" startFrom="home" depth="+1" forceLink="true" drawAllChilds="true" selectParent="false" showOnlyChilds="true" flat="true" editableRegion="topbar" attributeToSelect="class" cssCurrent="active" />
+
+    <glz:NavigationMenu id="submenu" startFrom="*parent-3" startFromDepth="3" depth="+1" forceLink="true" drawAllChilds="false" selectParent="false" showOnlyChilds="false" flat="true" editableRegion="subNavigation" attributeToSelect="class" cssCurrent="active" />
+
+    <glz:MessageBox type="SUCCESS" cssClass="alert welcome alert-info" />
+    <glz:MessageBox type="ERROR" cssClass="alert alert-error"/>
+
+    <glz:PageTitle id="pageTitle" wrap="true" wrapCssClass="section-title" drawIcon="true" />
+
+    <glz:JSscript src="application/templates/js/bootstrap.min.js" editableRegion="head" />
+    <glz:JSscript src="application/classes/desiderataLibrary/modules/ontologybuilder/static/formatSelectFrom.js" />
+
+</glz:EmptyComponent>

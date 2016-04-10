@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Routing>
+    <!-- login -->
+    <glz:Route method="POST" value="rest/login" controller="desiderataLibrary.modules.auth.controllers.Login" />
+    <glz:Route method="GET" value="rest/login" controller="desiderataLibrary.modules.auth.controllers.Login" />
+    <glz:Route method="GET" value="rest/logout" controller="desiderataLibrary.modules.auth.controllers.Logout" />
+    <glz:Route method="GET" value="rest/checkLogin" controller="desiderataLibrary.modules.auth.controllers.CheckLogin" />
+
+    <!-- user -->
+    <glz:Route method="POST" value="rest/user/register" controller="desiderataLibrary.modules.user.controllers.Register" />
+    <glz:Route method="PUT" value="rest/user/update" controller="desiderataLibrary.modules.user.controllers.Update" />
+    <glz:Route method="POST" value="rest/user/recoverPassword" controller="desiderataLibrary.modules.user.controllers.RecoverPassword" />
+    <glz:Route method="POST" value="rest/user/helpRequest" controller="desiderataLibrary.modules.user.controllers.HelpRequest" />
+
+    <!-- content -->
+    <glz:Route method="GET" value="rest/getLibrary" controller="gruppometa.easybook.controllers.GetLibrary" />
+    <glz:Route method="GET" value="rest/getPublicationIndex" controller="gruppometa.easybook.controllers.GetPublicationIndex" />
+    <glz:Route method="GET" value="rest/getContent" controller="gruppometa.easybook.controllers.GetContent" />
+    <glz:Route method="GET" value="rest/getCatalog" controller="gruppometa.easybook.controllers.GetCatalog" />
+    <glz:Route method="GET" value="rest/getContentInfo/{value=volume_id}/{value=content_id}" controller="gruppometa.easybook.controllers.GetContentInfo" />
+
+    <!-- annotations -->
+    <glz:Route method="POST" value="rest/annotations/{value=type}" controller="desiderataLibrary.modules.annotations.controllers.AddAnnotation" />
+    <glz:Route method="GET" value="rest/annotations/{value=type}" controller="desiderataLibrary.modules.annotations.controllers.GetAnnotationsByType" />
+    <glz:Route method="PUT" value="rest/annotations/{value=type}/{value=id}" controller="desiderataLibrary.modules.annotations.controllers.UpdateAnnotation" />
+    <glz:Route method="DELETE" value="rest/annotations/{value=type}/{value=id}" controller="desiderataLibrary.modules.annotations.controllers.DeleteAnnotation" />
+    <glz:Route method="GET" value="rest/annotations/byVolume/{value=volume_id}" controller="desiderataLibrary.modules.annotations.controllers.GetAnnotationsByVolume" />
+    <glz:Route method="GET" value="rest/annotations/byVolume/{value=volume_id}/{value=type}" controller="desiderataLibrary.modules.annotations.controllers.GetAnnotationsByVolumeAndType" />
+    <glz:Route method="GET" value="rest/annotations/byContent/{value=volume_id}/{value=content_id}" controller="desiderataLibrary.modules.annotations.controllers.GetAnnotationsByContent" />
+    <glz:Route method="GET" value="rest/annotations/{value=type}/{value=id}" controller="desiderataLibrary.modules.annotations.controllers.GetAnnotation" />
+
+    <!-- tags -->
+    <glz:Route method="GET" value="rest/tags/getUserKeywords/{value=term}" controller="desiderataLibrary.modules.tags.controllers.GetUserKeywords" />
+    <glz:Route method="GET" value="rest/tags/createUserKeyword/{value=term}" controller="desiderataLibrary.modules.tags.controllers.CreateUserKeyword" />
+    <glz:Route method="GET" value="rest/tags/getOntologyTags/{value=term}" controller="desiderataLibrary.modules.tags.controllers.GetOntologyTags" />
+    <glz:Route method="GET" value="rest/tags/load/{value=volume_id}/{value=content_id}" controller="desiderataLibrary.modules.tags.controllers.Load" />
+    <glz:Route method="POST" value="rest/tags/save/{value=volume_id}/{value=content_id}" controller="desiderataLibrary.modules.tags.controllers.Save" />
+    <glz:Route method="POST" value="rest/tags/search" controller="desiderataLibrary.modules.tags.controllers.Search" />
+
+    <!-- desiderata -->
+    <glz:Route method="GET" value="rest/desiderata" controller="desiderataLibrary.modules.desiderata.controllers.Search" />
+    <glz:Route method="GET" value="rest/desiderata/{value=id}" controller="desiderataLibrary.modules.desiderata.controllers.Load" />
+    <glz:Route method="POST" value="rest/desiderata" controller="desiderataLibrary.modules.desiderata.controllers.Save" />
+    <glz:Route method="PUT" value="rest/desiderata/{value=id}" controller="desiderataLibrary.modules.desiderata.controllers.Update" />
+    <glz:Route method="DELETE" value="rest/desiderata/{value=id}" controller="desiderataLibrary.modules.desiderata.controllers.Delete" />
+    <glz:Route method="POST" value="rest/desiderata/addCover/{value=id}" controller="desiderataLibrary.modules.desiderata.controllers.AddCover" />
+    <glz:Route method="GET" value="rest/desiderata/addContent/{value=desiderataId}/{value=volumeId}/{value=contentId}" controller="desiderataLibrary.modules.desiderata.controllers.AddContent" />
+    <glz:Route method="GET" value="rest/getDesiderataIndex" controller="gruppometa.easybook.controllers.GetDesiderataIndex" />
+
+    <!-- search -->
+    <glz:Route method="POST" value="rest/search" controller="desiderataLibrary.modules.search.controllers.Search" />
+    <glz:Route method="GET" value="rest/inferenceSearch/{value=volume_id}/{value=content_id}" controller="desiderataLibrary.modules.search.controllers.InferenceSearch" />
+    <glz:Route method="GET" value="rest/publicationSearch/{value=volume_id}" controller="desiderataLibrary.modules.search.controllers.PublicationSearch" />
+
+    <!-- similar -->
+    <glz:Route method="GET" value="rest/similar/{value=volume_id}/{value=content_id}" controller="desiderataLibrary.modules.similar.controllers.SimilarDocuments" />
+
+    <!-- license -->
+    <glz:Route method="GET" value="rest/license/burn/{value=code}" controller="desiderataLibrary.modules.license.controllers.BurnCode" />
+    <glz:Route method="GET" value="rest/license/add-free/{value=id}" controller="desiderataLibrary.modules.license.controllers.AddFree" />
+
+    <!-- geo -->
+    <glz:Route method="GET" value="rest/geo/search/{value=geo}/{value=distance}" controller="desiderataLibrary.modules.geo.controllers.GeoSearch" />
+
+    <!-- sharing -->
+    <glz:Route method="GET" value="rest/sharing/getSharingButtons" controller="desiderataLibrary.modules.sharing.controllers.GetSharingButtons" />
+
+    <!-- questo controller è chiamato dalla pipeline quando è finita l'importazione dei pdf -->
+    <glz:Route method="GET" value="rest/pdf/import/{value=publicationId}/{value=jobId}" controller="desiderataLibrary.modules.importPDF.controllers.rest.ImportCallback" />
+    <glz:Route method="GET" value="rest/pdf/import-error/{value=jobId}" controller="desiderataLibrary.modules.importPDF.controllers.rest.ErrorCallback" />
+
+    <!-- recommender -->
+    <glz:Route method="GET" value="rest/recommender/recommend/{value=volume_id}/{value=content_id}" controller="desiderataLibrary.modules.recommender.controllers.Recommend" />
+
+    <!-- order -->
+    <glz:Route method="GET" value="rest/order/InvoiceLoad" controller="desiderataLibrary.modules.order.controllers.InvoiceLoad" />
+    <glz:Route name="order.pay" method="GET" value="rest/order/Pay" controller="desiderataLibrary.modules.order.controllers.Gateway" />
+    <glz:Route method="POST" value="rest/order/Checkout" controller="desiderataLibrary.modules.order.controllers.Checkout" />
+
+    <!-- cds -->
+    <glz:Route method="POST" value="cds/download/{value=pubId}" controller="desiderataLibrary.modules.cds.controllers.Download" />
+    <glz:Route method="GET" value="cds/download/{value=pubId}" controller="desiderataLibrary.modules.cds.controllers.Download" />
+</glz:Routing>

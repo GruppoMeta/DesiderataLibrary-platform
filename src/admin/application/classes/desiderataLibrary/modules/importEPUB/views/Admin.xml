@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:evc="gruppometa.easybook.views.components.*"
+    controllerName="desiderataLibrary.modules.importEPUB.controllers.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:JSscript folder="desiderataLibrary.modules.importEPUB.js" />
+        <glz:Form id="myForm" removeGetValues="true">
+            <evc:MediaPicker id="sourceFile" label="{i18n:File da importare}" size="90" mediaType="OTHER" required="true" />
+            <glz:Checkbox id="showLog" label="{i18n:Modalità debug}" />
+            <glz:HtmlButton id="btnNext" label="{i18n:Importa}" value="import" name="action" cssClass="btn" />
+        </glz:Form>
+    </mvc:State>
+
+     <mvc:State name="importCompleted">
+        <glz:LongText adm:htmlEditor="true"><![CDATA[
+		Importazione completata.
+		]]></glz:LongText>
+    </mvc:State>
+</mvc:Page>

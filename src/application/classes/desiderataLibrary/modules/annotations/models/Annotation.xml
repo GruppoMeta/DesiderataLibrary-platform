@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="annotations_tbl" model:usePrefix="true">
+
+    <model:Define>
+        <model:Field name="annotation_created_at" type="datetime" readFormat="false" />
+        <model:Field name="annotation_updated_at" type="datetime" readFormat="false" />
+    </model:Define>
+</model:Model>

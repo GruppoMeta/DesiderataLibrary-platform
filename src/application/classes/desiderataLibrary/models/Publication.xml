@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="menus_tbl" model:usePrefix="true">
+
+    <model:Query name="getContentInfo" >
+    <![CDATA[
+SELECT detail1.menudetail_title as contentTitle, detail2.menudetail_title as publicationTitle
+FROM `menus_tbl` t1
+JOIN menudetails_tbl detail1 ON t1.menu_id = detail1.menudetail_FK_menu_id
+JOIN `menus_tbl` t2 ON t1.menu_FK_site_id = t2.menu_id
+JOIN menudetails_tbl detail2 ON t2.menu_id = detail2.menudetail_FK_menu_id
+WHERE t1.`menu_id` = :content_id
+]]>
+    </model:Query>
+
+</model:Model>

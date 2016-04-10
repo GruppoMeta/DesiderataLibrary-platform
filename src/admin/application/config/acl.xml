@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Acl>
+    <glz:AclService name="glizycms" default="false">
+        <glz:AclAction name="page.properties.modifyPageTypeFree" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="easybook" default="false">
+        <glz:AclAction name="usermanager.show" allowGroups="1,2,7" allowUsers="" />
+        <glz:AclAction name="history.show.show" allowGroups="" allowUsers="" />
+        <glz:AclAction name="history.show" allowGroups="1,2,7" allowUsers="" />
+        <glz:AclAction name="history.compare" allowGroups="1,2,7" allowUsers="" />
+        <glz:AclAction name="history.rollback" allowGroups="1,2,7" allowUsers="" />
+        <glz:AclAction name="comment.admin" allowGroups="1,2,7" allowUsers="" />
+        <glz:AclAction name="show.publication.Publication" allowGroups="1,2,7" allowUsers="" />
+        <glz:AclAction name="show.publication.PublicationPdf" allowGroups="1,2,7" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="ob_ontologybuilder_alias" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="ob_OntologyBuilder" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="ob_RelationsEditor" default="false">
+        <glz:AclAction name="visible" allowGroups="" allowUsers="1" />
+    </glz:AclService>
+     <glz:AclService name="ob_Graph" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="ob_ContentsEditor" default="false">
+        <glz:AclAction name="visible" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+    <glz:AclService name="jobmanager" default="false">
+        <glz:AclAction name="showId" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="delete" allowGroups="1" allowUsers="" />
+        <glz:AclAction name="refresh" allowGroups="1" allowUsers="" />
+    </glz:AclService>
+</glz:Acl>

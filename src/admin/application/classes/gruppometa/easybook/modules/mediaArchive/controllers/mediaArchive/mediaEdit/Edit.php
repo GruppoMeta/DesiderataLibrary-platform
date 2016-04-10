@@ -1,0 +1,4 @@
+<?php
+class gruppometa_easybook_modules_mediaArchive_controllers_mediaArchive_mediaEdit_Edit extends org_glizycms_mediaArchive_controllers_mediaEdit_Edit
+{
+}

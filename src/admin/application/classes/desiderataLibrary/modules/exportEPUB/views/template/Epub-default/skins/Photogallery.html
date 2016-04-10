@@ -1,0 +1,11 @@
+<span tal:omit-tag="" tal:condition="php: count(Component)">
+	<ul id="gallery">
+		<li tal:repeat="item Component">
+			<div class="box"><span tal:omit-tag="" tal:content="structure item/attach/__html__" /></div>
+			<dl>
+				<dt><span tal:omit-tag="" tal:content="structure item/attach/title"/></dt>
+			</dl>
+		</li> 
+	</ul>
+	
+</span>

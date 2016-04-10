@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Config xmlns:glz="http://www.glizy.org/dtd/1.0/">
+	<glz:Import src="##APPLICATION_TO_ADMIN##" />
+    <glz:Import src="config_common.xml" />
+    <glz:Param name="DEBUG" value="true" />
+    <glz:Param name="CACHE_CODE" value="0" />
+</glz:Config>

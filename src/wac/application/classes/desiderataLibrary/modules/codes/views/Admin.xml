@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:DataGridAjax id="dataGrid" dbDebug="false" recordClassName="desiderataLibrary.modules.codes.models.CodeGroup" query="list" cssClass="table table-bordered table-striped">
+            <glz:DataGridColumn columnName="codegroup_name" headerText="{i18n:Nome}" searchable="false" />
+            <glz:DataGridColumn columnName="codegroup_startDate" headerText="{i18n:Data di creazione}" searchable="false" />
+            <glz:DataGridColumn columnName="codegroup_licenses" headerText="{i18n:Pubblicazioni}" sortable="false" searchable="false" renderCell="desiderataLibrary.modules.codes.views.renderer.CellPublications" />
+            <glz:DataGridColumn columnName="editor_name" headerText="{i18n:Editore}" sortable="false" searchable="false" />
+            <glz:DataGridColumn columnName="codegroup_id" sortable="false" searchable="false" cssClass="actions" width="10" renderCell="desiderataLibrary.modules.codes.views.renderer.CellEdit" />
+        </glz:DataGridAjax>
+        <glz:Link label="{i18n:Crea lotto di codici}" cssClass="{config:glizycms.form.actionLink.cssClass}" icon="icon-plus" routeUrl="actionsMVCAdd" editableRegion="actions" acl="*,new"/>
+    </mvc:State>
+
+    <mvc:State name="edit">
+        <cms:FormEdit id="editForm" controllerName="desiderataLibrary.modules.codes.controllers.*">
+            <glz:Hidden id="__id" />
+            <glz:Hidden id="__model" value="desiderataLibrary.modules.codes.models.CodeGroup"/>
+
+            <glz:Input id="codegroup_name" label="{i18n:Nome del lotto}" required="true" />
+            <glz:Input id="codegroup_num" label="{i18n:Numero di codici da generare}" required="true" type="number" />
+            <glz:Input id="codegroup_startDate" label="{i18n:Data inizio validità}" data="type=date" />
+            <glz:Input id="codegroup_endDate" label="{i18n:Data di scadenza}" data="type=date"/>
+            <glz:Input id="codegroup_licenses" label="{i18n:Pubblicazioni collegate}" data="type=selectfrom;multiple=true;override=true;proxy=desiderataLibrary.modules.license.models.proxy.LicensePicker;return_object=true;get_id=true" required="true" />
+
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE_CLOSE}" type="button" cssClass="btn js-glizycms-save" data="action=saveClose" />
+                <glz:HtmlButton label="{i18n:GLZ_CANCEL}" type="button" routeUrl="link" cssClass="btn js-glizycms-cancel" data="action=cancel" />
+            </cms:FormButtonsPanel>
+        </cms:FormEdit>
+    </mvc:State>
+
+    <mvc:State name="show">
+        <cms:FormEdit controllerName="desiderataLibrary.modules.codes.controllers.*" >
+            <glz:DataProvider id="dp1" recordClassName="desiderataLibrary.modules.codes.models.CodeGroup" query="detail" />
+            <glz:DataProvider id="dp2" recordClassName="desiderataLibrary.modules.codes.models.Code" query="detail" />
+            <glz:RecordDetail id="entry" dataProvider="{dp1}" idName="id" skin="{codeGroupDetail}" />
+            <glz:RecordSetList id="list" dataProvider="{dp2}" skin="{codeGroupList}" />
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:Scarica CSV}" type="button" cssClass="btn" routeUrl="linkDownloadCsv" />
+                <glz:HtmlButton label="{i18n:Indietro}" type="button" routeUrl="link" cssClass="btn js-glizycms-cancel" data="action=cancel" />
+            </cms:FormButtonsPanel>
+        </cms:FormEdit>
+    </mvc:State>
+
+    <mvc:State name="download,delete">
+        <glz:Hidden controllerName="desiderataLibrary.modules.codes.controllers.*" />
+    </mvc:State>
+
+
+    <glz:SkinDefine id="codeGroupDetail"><![CDATA[
+<h3>Nome del lotto: <span tal:omit-tag="" tal:content="Component/codegroup_name" /></h3>
+<p>Numero di codici: <span tal:omit-tag="" tal:content="Component/codegroup_num" /></p>
+<p>Validità:<br />
+&nbsp;&nbsp;inizio <span tal:omit-tag="" tal:content="Component/codegroup_startDate" /><br />
+        <span tal:condition="php: Component.codegroup_endDate!='30/11/1999'">
+&nbsp;&nbsp;scadenza <span tal:omit-tag="" tal:content="Component/codegroup_endDate" />
+        </span>
+</p>
+    ]]></glz:SkinDefine>
+
+    <glz:SkinDefine id="codeGroupList"><![CDATA[
+<h4>Elenco codici generati</h4>
+<p>
+    <span tal:omit-tag="" tal:repeat="item Component/records">
+        <span tal:condition="item/code_status">
+            <s><span tal:content="item/code_value" /></s>&nbsp;
+        </span>
+        <span tal:condition="not:item/code_status">
+            <span tal:content="item/code_value" />&nbsp;
+        </span>
+    </span>
+</p>
+    ]]></glz:SkinDefine>
+
+</mvc:Page>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    xmlns:evc="gruppometa.easybook.views.components.*"
+    controllerName="gruppometa.easybook.controllers.publication.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:Panel cssClass="widget-actions neg-margin" text="{i18n:ordina per}" visible="false">
+            <glz:Link id="orderDate" label="{i18n:data di modifica}" routeUrl="linkPublicationOrderDate" cssClass="order-link" />
+            <glz:Link id="orderTitle" label="{i18n:titolo}" routeUrl="linkPublicationOrderTitle" cssClass="order-link" />
+        </glz:Panel>
+        <evc:AddPublicationButton label="{i18n:Nuova pubblicazione}" editableRegion="actions"  />
+
+        <glz:DataProvider id="ModuleDP" recordClassName="gruppometa.easybook.models.Publication" query="getPublications" />
+        <glz:SearchFilters id="filters" cssClass="pull-right span6 search-inputs" addValidationJs="false" filterClass="gruppometa.easybook.views.filters.Publication">
+			<glz:HtmlButton label="{i18n:Ricerca}" tag="button" value="SEARCH" target="{filters}" cssClass="btn search" />
+            <glz:Input id="filterTitle" value="{filters}" cssClass="search-input" placeholder="{i18n:cerca nel titolo}" />
+            <glz:Hidden id="filterType" value="Publication,PublicationPdf" />
+		</glz:SearchFilters>
+        <glz:RecordSetList id="list" dataProvider="{ModuleDP}" title="Risultati ricerca" filters="{filters}" skin="Publication_list.html" processCell="gruppometa.easybook.views.renderer.CellPublication">
+        </glz:RecordSetList>
+    </mvc:State>
+
+</mvc:Page>

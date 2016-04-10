@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="licenses_tbl" model:usePrefix="true">
+
+    <model:Query name="licenses" type="function" arguments="userId,libraryId">
+    <![CDATA[
+        if ($userId) {
+            $iterator->where('license_FK_user_id', $userId);
+        }
+
+        if ($libraryId) {
+            $iterator->where('license_FK_library_id', $libraryId);
+        }
+    ]]>
+    </model:Query>
+
+</model:Model>

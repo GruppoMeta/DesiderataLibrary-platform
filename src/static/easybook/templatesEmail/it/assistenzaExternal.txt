@@ -1,0 +1,11 @@
+Richiesta di assistenza
+<p>Grazie per avere contattato l'assistenza Desiderata Library, di seguito il testo della sua richiesta, i nostri operatori vi risponderanno appena possibile.<p>
+
+<p>
+<i>
+Richiesto assistenza per la pubblicazione "##BOOK##"
+Messaggio: ##DESCRIPTION##
+</i>
+</p>
+<p>Cordiali saluti,<br/>
+Team DesiderataLibrary</p>

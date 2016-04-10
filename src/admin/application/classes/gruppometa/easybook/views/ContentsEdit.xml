@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    xmlns:evc="gruppometa.easybook.views.components.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Popup.php">
+    <glz:Import src="_common.xml" />
+    <glz:JSscript folder="org.glizycms.contents.js" editableRegion="tail"/>
+    <glz:JSscript folder="gruppometa.easybook.js" editableRegion="tail"/>
+
+    <mvc:StateTabNavigation id="tabs" cssClass="nav nav-tabs" cssClassCurrent="active" addQueryString="true" visible="true" />
+
+    <mvc:State name="index">
+        <glz:Modifier target="Page" attribute="templateFileName" value="Page.php" />
+        <glz:Modifier target="tabs" attribute="visible" value="false" />
+        <glz:Modifier target="pageTitle" attribute="visible" value="false" />
+        <evc:SiteTreeView id="treeview" title="Contenuti" editableRegion="treeview" controllerName="org.glizycms.contents.controllers.siteTree.*" />
+        <evc:PageEdit id="pageEdit" mode="container" />
+    </mvc:State>
+
+    <mvc:State name="empty">
+        <glz:LongText><![CDATA[]]></glz:LongText>
+    </mvc:State>
+
+    <mvc:State name="add">
+        <glz:Modifier target="tabs" attribute="visible" value="false" />
+        <evc:FormEdit id="myFormAdd" controllerName="org.glizycms.contents.controllers.pageEdit.*">
+            <cms:pageTitleModifier action="add" label="{i18n:Add a new page}" new="true" />
+
+            <glz:Input id="title" label="{i18n:GLZ_PAGE_TITLE}" size="90" required="true" />
+            <cms:SelectPage id="pageParent" label="{i18n:GLZ_PAGE_SELECT_PARENT}" required="true" />
+            <cms:SelectPageTypeNew id="pageType" label="{i18n:GLZ_PAGE_SELECT_TYPE}" showAllPageTypes="false" defaultValue="Page" emptyValue="-" required="true" linked="pageParent"/>
+
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE}" type="button" cssClass="btn btn-primary js-glizycms-save" data="action=add" />
+            </cms:FormButtonsPanel>
+        </evc:FormEdit>
+    </mvc:State>
+
+    <mvc:State name="edit" label="{i18n:Edit}" >
+        <evc:PageEdit id="pageEdit" mode="edit" controllerName="gruppometa.easybook.controllers.pageEdit.*" editUrl="false"  newCode="{php:__Request::get('newCode')}">
+            <cms:pageTitleModifier action="edit" label="{i18n:Edit page}" field="__title" />
+            <cms:FormButtonsPanel>
+                <glz:Input id="__comment" placeholder="{i18n:Inserisci il commento}" cssClass="js-glizycms-savecomment" size="10" visible="{config:glizycms.content.history.comment}"/>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE}" type="button" cssClass="btn btn-primary js-glizycms-save" data="action=save" />
+                <glz:Link id="preview" label="{i18n:GLZ_PREVIEW}" cssClass="btn" visible="false" target="_blank" />
+                <glz:Link id="previewViewer" label="{i18n:Visore}" cssClass="btn" visible="false" target="_blank" />
+            </cms:FormButtonsPanel>
+        </evc:PageEdit>
+    </mvc:State>
+
+    <mvc:State id="propertiesState" name="properties" label="{i18n:Properties}" acl="easybook,properties.show">
+        <cms:FormEdit id="myFormPropertiesState" controllerName="org.glizycms.contents.controllers.pageEdit.*">
+            <cms:pageTitleModifier action="properties" label="{i18n:Edit properties}" field="menudetail_title" />
+            <glz:Hidden id="menu_id" />
+            <glz:Hidden id="menu_parentPageType" />
+            <glz:Input id="menudetail_title" label="{i18n:GLZ_PAGE_TITLE}" size="90" required="true" />
+            <glz:Input id="menu_cssClass" label="{i18n:Menu css class}" size="90"  />
+            <cms:SelectPageTypeNew id="menu_pageType" label="{i18n:GLZ_PAGE_SELECT_TYPE}" showAllPageTypes="false" required="true" linked="menu_parentPageType"/>
+
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE}" type="button" cssClass="btn btn-primary js-glizycms-save" data="action=saveProperties" />
+            </cms:FormButtonsPanel>
+        </cms:FormEdit>
+    </mvc:State>
+
+    <mvc:State name="history" label="{i18n:Storico}" acl="easybook,history.show">
+        <cms:FormEdit id="myFormHistory" addValidationJs="false" controllerName="gruppometa.easybook.controllers.pageEdit.*">
+            <cms:pageTitleModifier action="history" label="{i18n:Storico}" />
+            <evc:ShowHistory id="history" />
+            <cms:FormButtonsPanel acl="easybook,history.compare">
+                <glz:HtmlButton label="{i18n:Confronta}" type="button" cssClass="btn btn-primary js-glizycms-history" data="action=add" />
+            </cms:FormButtonsPanel>
+        </cms:FormEdit>
+    </mvc:State>
+
+<!--
+    <mvc:State name="permissions" label="{i18n:Permissions}" draw="{config:ACL_ROLES}">
+        <cms:FormEdit id="myForm" controllerName="org.glizycms.contents.controllers.pageEdit.*">
+            <glz:Hidden id="menuId" />
+            <glz:Fieldset label="Permessi di modifica (Back-end)" cssClass="permessi">
+                <glz:Input id="aclBack" label="{i18n:Ruoli}" data="type=selectfrom;multiple=true;model=org.glizycms.roleManager.models.Role;field=role_name;get_id=true" size="255" />
+                <glz:Checkbox id="extendsPermissions" label="Estendi permessi alle pagine figlie" data="type=checkbox"/>
+            </glz:Fieldset>
+            <glz:Fieldset label="Permessi di visualizzazione (Front-end)" cssClass="permessi">
+                <glz:Input id="aclFront" label="{i18n:Ruoli}" data="type=selectfrom;multiple=true;model=org.glizycms.roleManager.models.Role;field=role_name;get_id=true" size="255" />
+            </glz:Fieldset>
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE}" type="button" cssClass="btn btn-primary js-glizycms-save" data="action=savePermissions" />
+            </cms:FormButtonsPanel>
+        </cms:FormEdit>
+    </mvc:State>
+-->
+
+</mvc:Page>

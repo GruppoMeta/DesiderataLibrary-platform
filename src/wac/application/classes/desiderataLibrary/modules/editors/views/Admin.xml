@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index">
+        <glz:DataGridAjax id="dataGrid" dbDebug="false" recordClassName="desiderataLibrary.modules.editors.models.Model" cssClass="table table-bordered table-striped">
+            <glz:DataGridColumn columnName="editor_name" headerText="{i18n:Editore}" />
+            <glz:DataGridColumn columnName="editor_id" sortable="false" searchable="false" cssClass="actions" renderCell="org.glizycms.contents.views.renderer.CellEditDelete" />
+        </glz:DataGridAjax>
+        <glz:Link label="{i18n:Aggiungi editore}" cssClass="{config:glizycms.form.actionLink.cssClass}" icon="icon-plus" routeUrl="actionsMVCAdd" editableRegion="actions" acl="*,new"/>
+    </mvc:State>
+
+    <mvc:State name="edit">
+        <cms:FormEdit id="editForm" controllerName="desiderataLibrary.modules.editors.controllers.*">
+            <glz:Hidden id="__id" />
+            <glz:Hidden id="__model" value="desiderataLibrary.modules.editors.models.Model"/>
+
+            <glz:Input id="editor_name" label="{i18n:Editore}" required="true" />
+            <glz:Input id="editor_address" label="{i18n:Indirizzo}" rows="3" type="multiline" />
+            <glz:Input id="editor_city" label="{i18n:Città}" />
+            <glz:Input id="editor_zip" label="{i18n:CAP}"  />
+            <glz:Input id="editor_reference_name" label="{i18n:Nome referente}" />
+            <glz:Input id="editor_reference_email" label="{i18n:Email referente}" type="email" />
+
+            <glz:Checkbox id="editor_hasBlog" label="{i18n:Blog attivo}" data="type=checkbox" />
+            <glz:Input id="editor_blogPath" label="{i18n:Path del blog}" readOnly="true" />
+
+            <cms:FormButtonsPanel>
+                <glz:HtmlButton label="{i18n:GLZ_SAVE}" type="button" cssClass="btn btn-primary js-glizycms-save" data="action=save" />
+                <glz:HtmlButton label="{i18n:GLZ_SAVE_CLOSE}" type="button" cssClass="btn js-glizycms-save" data="action=saveClose" />
+                <glz:HtmlButton label="{i18n:GLZ_CANCEL}" type="button" routeUrl="link" cssClass="btn js-glizycms-cancel" data="action=cancel" />
+            </cms:FormButtonsPanel>
+        </cms:FormEdit>
+    </mvc:State>
+
+    <mvc:State name="delete">
+        <glz:Hidden controllerName="desiderataLibrary.modules.editors.controllers.*" />
+        <glz:Hidden id="__model" value="desiderataLibrary.modules.editors.models.Model"/>
+    </mvc:State>
+
+</mvc:Page>

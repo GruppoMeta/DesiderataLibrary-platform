@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:type="2tables"
+	model:tableName="desiderata_tbl,desideratadetails_tbl"
+    model:joinFields="desiderata_id,desideratadetail_FK_desiderata_id"
+    model:usePrefix="true">
+
+    <model:Query name="getDesiderataFromContentId">
+    <![CDATA[
+        SELECT *
+        FROM desiderata_tbl
+        JOIN desideratadetails_tbl ON desiderata_id = desideratadetail_FK_desiderata_id
+        WHERE desiderata_FK_user_id = ##userId## AND
+        (desiderata_title LIKE '%##search##%' OR desideratadetail_contentId in (##contentIds##))
+        GROUP BY desiderata_id
+    ]]>
+    </model:Query>
+</model:Model>

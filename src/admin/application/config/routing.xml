@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Routing>
+    <!-- pubblicazioni -->
+    <glz:Route name="linkPublicationOrderDate" value="pubblicazioni/{order=data}" pageId="pubblicazioni"  resetMultisite="true"/>
+    <glz:Route name="linkPublicationOrderTitle" value="pubblicazioni/{order=titolo}" pageId="pubblicazioni"  resetMultisite="true" />
+    <glz:Route name="linkPublicationNew" value="nuova-pubblicazione" pageId="pubblicazioni" action="new" resetMultisite="true" />
+    <glz:Route name="linkPublication" value="pubblicazioni" pageId="pubblicazioni" resetMultisite="true" />
+
+    <glz:Route name="linkPublicationContent" value="pubblicazione/{value=menu_id}/contenuti" pageId="easybookContentsEdit" action="index" multisite="true" />
+
+    <glz:Route name="linkPublicationDelete" value="pubblicazione/{value=menu_id}/delete" pageId="pubblicazioni" action="delete" multisite="true" />
+
+    <glz:Route name="linkPublicationMedia" value="pubblicazione/{value=menu_id}/media" pageId="MediaArchive" action="index" multisite="true" />
+    <glz:Route name="linkPublicationMediaAction" value="pubblicazione/{value=menu_id}/media/{value=action}/{value=id}" pageId="MediaArchive" multisite="true" />
+    <glz:Route name="linkPublicationMediaAdd" value="pubblicazione/{value=menu_id}/media/{action=add}/0" pageId="MediaArchive" multisite="true" />
+    <glz:Route name="linkPublicationMediaAddZip" value="pubblicazione/{value=menu_id}/media/{action=addfromzip}/0" pageId="MediaArchive" multisite="true" />
+    <glz:Route name="linkPublicationMediaPicker" value="pubblicazione/{value=menu_id}/media-picker" pageId="MediaArchive_picker" action="index" multisite="true" />
+    <glz:Route name="linkPublicationMediaPickerAdd" value="pubblicazione/{value=menu_id}/media-picker/{action=add}/0" pageId="MediaArchive_picker" multisite="true" />
+
+    <glz:Route name="linkPublicationImport" value="pubblicazione/{value=menu_id}/import" pageId="ImportEPUB" action="index" multisite="true" />
+    <glz:Route name="linkPublicationExport" value="pubblicazione/{value=menu_id}/export" pageId="ExportEPUB" action="index" multisite="true" />
+
+    <!-- pdf -->
+    <glz:Route name="linkPublicationContentPdf" value="pubblicazione-pdf/{value=menu_id}/contenuti" pageId="pdfContentsEdit" action="index" multisite="true" />
+    <glz:Route name="linkPublicationMediaPdf" value="pubblicazione-pdf/{value=menu_id}/media" pageId="pdfMediaArchive" action="index" multisite="true" />
+    <glz:Route name="linkPublicationMediaActionPdf" value="pubblicazione-pdf/{value=menu_id}/media/{value=action}/{value=id}" pageId="pdfMediaArchive" multisite="true" />
+    <glz:Route name="linkPublicationMediaAddPdf" value="pubblicazione-pdf/{value=menu_id}/media/{action=add}/0" pageId="pdfMediaArchive" multisite="true" />
+    <glz:Route name="linkPublicationMediaAddPdfZip" value="pubblicazione-pdf/{value=menu_id}/media/{action=addfromzip}/0" pageId="pdfMediaArchive" multisite="true" />
+    <glz:Route name="linkPublicationMediaPickerPdf" value="pubblicazione-pdf/{value=menu_id}/media-picker" pageId="MediaArchive_picker" action="index" multisite="true" />
+    <glz:Route name="linkPublicationMediaPickerAddPdf" value="pubblicazione-pdf/{value=menu_id}/media-picker/{action=add}/0" pageId="MediaArchive_picker" multisite="true" />
+    <glz:Route name="linkPublicationImportPdf" value="pubblicazione-pdf/{value=menu_id}/import" pageId="importPDF" action="index" multisite="true" />
+
+    <glz:Route name="linkOntologyBuilder" value="ontologyBuilder" pageId="ob_OntologyBuilder" multisite="false" />
+    <glz:Route name="linkRelationsEditor" value="ontologyBuilder-relationsEditor" pageId="ob_RelationsEditor" multisite="false" />
+    <glz:Route name="linkGraph" value="ontologyBuilder-graph" pageId="ob_Graph" multisite="false" />
+    <glz:Route name="linkContentsEditor" value="ontologyBuilder-/contents" pageId="ob_ContentsEditor" multisite="false" />
+
+    <glz:Route name="actionsMVCDelete_nomultisite" value="{pageId}/{action=delete}/{value=model}/{value=id}" />
+
+    <glz:Route name="actionEntities" value="{pageId}/{value=entityTypeId}/{value=action}/{value=entityId}" multisite="false" />
+    <glz:Route name="actionEntitiesAdd" value="{pageId}/{value=entityTypeId}/{action=edit}/0" parseUrl="false" multisite="false" />
+
+    <glz:Route name="actionsMVC_nomultisite" value="{pageId}/{value=action}/{value=id}" />
+    <glz:Route name="actionsMVC" value="{pageId}/{value=menu_id}/{value=action}/{value=id}" multisite="true" />
+    <glz:Route name="actionsMVCAdd" value="{pageId}/{value=menu_id}/{action=edit}/0" parseUrl="false" multisite="true" />
+    <glz:Route name="actionsMVCAdd_nomultisite" value="{pageId}/{action=edit}/0" parseUrl="false" />
+
+    <glz:Route name="linkCurrentPage" value="{pageId}" parseUrl="false" />
+    <glz:Route name="linkChangeAction" value="{pageId}/{value=action}" />
+    <glz:Route name="moduleAction" value="{pageId}/{value=action}" />
+    <glz:Route name="logout" value="{pageId=_logout}" />
+    <glz:Route name="link" value="{pageId}" resetMultisite="true"/>
+</glz:Routing>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:EmptyComponent
+    xmlns:glz="http://www.glizy.org/dtd/1.0/">
+
+    <glz:Input id="media_title" label="{i18n:Title}" size="90" required="true" />
+    <glz:Input id="media_category" label="{i18n:Categoria}" data="type=selectfrom;multiple=true;add_new_values=true;model=org.glizycms.models.Media" size="255" />
+</glz:EmptyComponent>

@@ -1,0 +1,595 @@
+/*
+
+                     |              |    
+ ,---.,---.,---.,   .|---.,---.,---.|__/ 
+ |---',---|`---.|   ||   ||   ||   ||  \ 
+ `---'`---^`---'`---|`---'`---'`---'`   `
+                `---'
+
+
+  Theme name:   Clean (simple and minimalistic)
+  Author:       javier.eguiluz@gmail.com
+  Last updated: 12 / July / 2012
+*/
+
+
+/* Normalize styles
+   ========================================================================= */
+/* copied from http://github.com/necolas/normalize.css - 2012-03-06T10:21 UTC */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+    display: block;
+}
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    /**display: inline;
+    *zoom: 1;*/
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+[hidden] {
+    display: none;
+}
+
+html {
+    font-size: 100%; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -ms-text-size-adjust: 100%; /* 2 */
+}
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+a:hover,
+a:active {
+    outline: 0;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.75em;
+    margin: 2.33em 0;
+}
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+dfn {
+    font-style: italic;
+}
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+pre,
+code,
+kbd,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+q {
+    quotes: none;
+}
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+small {
+    font-size: 75%;
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+figure {
+    margin: 0;
+}
+
+form {
+    margin: 0;
+}
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+    border: 0;
+    padding: 0;
+    white-space: normal;
+    /**margin-left: -7px;*/
+}
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+    /**vertical-align: middle;*/
+}
+
+button,
+input {
+    line-height: normal;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+    /**overflow: visible;*/
+}
+
+button[disabled],
+input[disabled] {
+    cursor: default;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+    /**height: 13px;
+    *width: 13px;*/
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Common classes for image alignment
+   ========================================================================= */
+.left {
+    float: left;
+    margin: 0 1em 1em 0;
+}
+.right {
+    float: right;
+    margin: 0 0 1em 1em;
+}
+.center {
+    display: block;
+    text-align: center;
+}
+
+
+/* Custom fonts
+   ========================================================================= */
+/* Inconsolata : http://www.google.com/webfonts/specimen/Inconsolata */
+@font-face {
+    font-family: inconsolata;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/Inconsolata.ttf")
+}
+
+/* Base styles
+   ========================================================================= */
+
+body {
+    background: #FFF;
+    color: #222;
+    font: 16px/1.6 "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --- links --------------------------------------------------------------- */
+a, a:visited {
+    color: #152DC6;
+    text-decoration: underline;
+}
+a:hover {
+    text-decoration: none;
+}
+
+/* --- headings ------------------------------------------------------------ */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+    margin: 1em 0 .25em 0;
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 21px; }
+h3 { font-size: 18px; }
+h4 { font-size: 14px; }
+h5 { font-size: 14px; }
+h6 { font-size: 14px; }
+
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
+    margin-top: .25em;
+}
+
+/* --- lists --------------------------------------------------------------- */
+ul, ol {
+    list-style-type: disc;
+    margin: 1em 0 1em 2em;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+ul li, ol li {
+    margin: .5em 0;
+}
+
+/* --- images -------------------------------------------------------------- */
+img {
+    max-width: 940px;
+}
+
+/* --- tables -------------------------------------------------------------- */
+table {
+    margin-bottom: 1em;
+    margin-bottom: 1em;
+    max-width: 100%;
+    width: 100%;
+}
+table thead {
+    border-bottom: 2px solid #777;
+}
+table th, table td {
+    padding: .5em;
+    line-height: 1.4;
+    text-align: left;
+}
+table th {
+    font-weight: bold;
+    vertical-align: bottom;
+}
+table td {
+    border-bottom: 1px solid #DDD;
+    vertical-align: top;
+}
+table tr:last-child td {
+    border-bottom: 0;
+}
+table thead th + th,
+table tbody th + td,
+table td + td {
+    border-left: 1px solid #DDD;
+}
+table tbody + tbody {
+    border-top: 2px solid #777;
+}
+
+/* --- code and code listings ---------------------------------------------- */
+code, pre {
+    font-family: inconsolata, monospace;
+    font-size: 90%;
+    padding: 0 3px 2px;
+}
+
+code {
+    border: 1px solid #E1E1E8;
+    line-height: 1.6em;
+    padding: 3px 4px;
+}
+
+pre {
+    border-left: 1px solid #DDD;
+    margin: 0 0 1em;
+    padding: 0 0 0 1em;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+pre code {
+    background-color: transparent;
+    border: none;
+    color: #222;
+    padding: 0;
+}
+
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
+    font-weight: normal;
+}
+
+/* Layout
+   ========================================================================= */
+
+.container {
+    padding: 0 .5em;
+    width: auto;
+}
+
+
+/* Book items
+   ========================================================================= */
+
+/* --- common -------------------------------------------------------------- */
+.item {
+    margin-bottom: 1em;
+}
+
+/* --- item:cover ---------------------------------------------------------- */
+.item\:cover {
+}
+.item\:cover h1 {
+    color: #222;
+    font-size: 64px;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    padding: 3em 2.5em .25em 0;
+    text-align: left;
+}
+.item\:cover h2 {
+    color: #222;
+    font-size: 36px;
+    font-weight: normal;
+    margin-top: .5em;
+    text-align: left;
+}
+
+/* --- item:title ---------------------------------------------------------- */
+.item\:cover + .item\:title {
+    display: none;
+}
+.item\:title h1.title {
+    display: none;
+}
+.item\:title h1,
+.item\:title h2,
+.item\:title h3 {
+    font-weight: normal;
+    text-align: center;
+}
+.item\:title h1 {
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -2pt;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+.item\:title h2 {
+    font-size: 24px;
+    margin-top: .5em;
+}
+.item\:title h3 {
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 1em;
+}
+
+/* --- item:dedication ----------------------------------------------------- */
+.item\:dedication {
+    padding-top: 5em;
+}
+.item\:dedication h1.title {
+    display: none;
+}
+.item\:dedication p {
+    font-style: italic;
+    text-align: center;
+}
+
+/* --- item:toc ------------------------------------------------------------ */
+.item\:toc {
+}
+
+/* --- item:lot, item:lof -------------------------------------------------- */
+.item\:lof ul,
+.item\:lot ul {
+}
+
+/* --- item:chapter -------------------------------------------------------- */
+.item\:chapter h1 { font-size: 36px; color: #222; margin: 5em 2em .25em 0; }
+.item\:chapter h2 { font-size: 24px; }
+.item\:chapter h3 { font-size: 21px; }
+.item\:chapter h4 { font-size: 16px; }
+.item\:chapter h5 { font-size: 16px; }
+.item\:chapter h6 { font-size: 16px; }
+
+.item\:chapter h1 + h2,
+.item\:chapter h2 + h3,
+.item\:chapter h3 + h4,
+.item\:chapter h4 + h5,
+.item\:chapter h5 + h6 {
+    margin-top: 1em;
+}
+
+.item\:chapter h1 span {
+    color: #777;
+    display: block;
+    font-size: 90%;
+    font-weight: normal;
+    padding-bottom: .25em;
+}
+
+/* --- item:appendix ------------------------------------------------------- */
+.item\:appendix h1 { font-size: 36px; color: #222; margin: 5em 2em .25em 0; }
+.item\:appendix h2 { font-size: 24px; }
+.item\:appendix h3 { font-size: 21px; }
+.item\:appendix h4 { font-size: 16px; }
+.item\:appendix h5 { font-size: 16px; }
+.item\:appendix h6 { font-size: 16px; }
+
+.item\:appendix h1 + h2,
+.item\:appendix h2 + h3,
+.item\:appendix h3 + h4,
+.item\:appendix h4 + h5,
+.item\:appendix h5 + h6 {
+    margin-top: 1em;
+}
+
+.item\:appendix h1 span {
+    color: #777;
+    font-size: 90%;
+    font-weight: normal;
+    padding-bottom: .25em;
+}
+
+/* --- item:part ----------------------------------------------------------- */
+.item\:part {
+}
+
+.item\:part h1 {
+    font-size: 48px;
+    margin: 3em 0;
+}
+.item\:part h1 span {
+    color: #222;
+    display: block;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: .5em;
+}
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="menus_tbl" model:usePrefix="true">
+
+    <model:Query name="getPublications" type="function">
+    <![CDATA[
+        $iterator->select('*')
+            ->join('t1', 'menudetails_tbl', 't2', 't1.menu_id = t2.menudetail_FK_menu_id')
+            ->leftJoin('t1', 'documents_index_int_tbl', 't3', 't1.menu_id = document_index_int_value AND document_index_int_name = "id"')
+            ->leftJoin('t1', 'documents_detail_tbl', 't4', 't4.document_detail_id = t3.document_index_int_FK_document_detail_id')
+            ->where('menu_parentId', 0)
+            ->where('document_detail_status', 'PUBLISHED')
+            ->orderBy('t2.menudetail_title');
+    ]]>
+    </model:Query>
+
+ <model:Query name="getPublicationsForEditors" type="function" arguments="publisherId">
+    <![CDATA[
+        $iterator->select('distinct menu_id')
+            ->join('t1', 'menudetails_tbl', 't2', 't1.menu_id = t2.menudetail_FK_menu_id')
+            ->leftJoin('t1', 'documents_index_int_tbl', 't3', 't1.menu_id = t3.document_index_int_value AND t3.document_index_int_name = "id"')
+            ->leftJoin('t1', 'documents_detail_tbl', 't4', 't4.document_detail_id = t3.document_index_int_FK_document_detail_id')
+            ->leftJoin('t1', 'documents_index_int_tbl', 't5', 't4.document_detail_id = t5.document_index_int_FK_document_detail_id AND t5.document_index_int_name = "publisherid"')
+            ->where('menu_parentId', 0)
+            ->where('t5.document_index_int_value', $publisherId)
+            ->orderBy('t2.menudetail_title');
+    ]]>
+    </model:Query>
+
+    <model:Query name="getPublicationsWithStart">
+    <![CDATA[
+SELECT *, (SELECT menu_id FROM menus_tbl as t5 where t5.menu_parentId = t1.menu_id ORDER BY menu_order ASC LIMIT 0,1 ) as menuStart
+ FROM `menus_tbl` `t1`
+  INNER JOIN `menudetails_tbl` `t2` ON t1.menu_id = t2.menudetail_FK_menu_id
+  LEFT JOIN `documents_index_int_tbl` `t3` ON t1.menu_id = document_index_int_value
+  AND document_index_int_name = "id"
+  LEFT JOIN `documents_detail_tbl` `t4` ON t4.document_detail_id = t3.document_index_int_FK_document_detail_id
+WHERE  menu_id IN ##menu_id##  AND (`document_detail_status` = 'PUBLISHED') AND t2.menudetail_isVisible = 1
+ORDER BY `t2`.`menudetail_title` ASC
+    ]]>
+    </model:Query>
+
+    <model:Query name="getPublicationsWithStartById">
+    <![CDATA[
+SELECT *, (SELECT menu_id FROM menus_tbl as t5 where t5.menu_parentId = t1.menu_id ORDER BY menu_order ASC LIMIT 0,1 ) as menuStart
+ FROM `menus_tbl` `t1`
+  INNER JOIN `menudetails_tbl` `t2` ON t1.menu_id = t2.menudetail_FK_menu_id
+  LEFT JOIN `documents_index_int_tbl` `t3` ON t1.menu_id = document_index_int_value
+  AND document_index_int_name = "id"
+  LEFT JOIN `documents_detail_tbl` `t4` ON t4.document_detail_id = t3.document_index_int_FK_document_detail_id
+WHERE  (`menu_id` = :menuId)  AND (`document_detail_status` = 'PUBLISHED') AND t2.menudetail_isVisible = 1
+ORDER BY `t2`.`menudetail_title` ASC
+    ]]>
+    </model:Query>
+
+    <model:Query name="getPublicationsWithStartByIsbn">
+    <![CDATA[
+SELECT *, (SELECT menu_id FROM menus_tbl as t5 where t5.menu_parentId = t1.menu_id ORDER BY menu_order ASC LIMIT 0,1 ) as menuStart
+ FROM `menus_tbl` `t1`
+  INNER JOIN `menudetails_tbl` `t2` ON t1.menu_id = t2.menudetail_FK_menu_id
+  LEFT JOIN `documents_index_int_tbl` `t3` ON t1.menu_id = document_index_int_value
+  AND document_index_int_name = "id"
+  LEFT JOIN `documents_detail_tbl` `t4` ON t4.document_detail_id = t3.document_index_int_FK_document_detail_id
+WHERE  (`document_detail_object` like :isbn)  AND (`document_detail_status` = 'PUBLISHED') AND t2.menudetail_isVisible = 1
+ORDER BY `t2`.`menudetail_title` ASC
+    ]]>
+    </model:Query>
+
+    <model:Query name="getPublicationById" type="function" arguments="pubId">
+    <![CDATA[
+        $iterator->select('*')
+            ->join('t1', 'menudetails_tbl', 't2', 't1.menu_id = t2.menudetail_FK_menu_id')
+            ->leftJoin('t1', 'documents_index_int_tbl', 't3', 't1.menu_id = document_index_int_value AND document_index_int_name = "id"')
+            ->leftJoin('t1', 'documents_detail_tbl', 't4', 't4.document_detail_id = t3.document_index_int_FK_document_detail_id')
+            ->where('menu_id', $pubId);
+    ]]>
+    </model:Query>
+
+
+    <model:Script parent="model">
+    <![CDATA[
+public function __get($name)
+{
+    if ($name=='document' && !property_exists($this->data, 'document')) {
+        // legge i contenuti della pubblicazione
+        $this->data->document = json_decode($this->data->document_detail_object)->content;
+        if (!is_object($this->data->document) || !property_exists($this->data->document, 'cover')) {
+            if (!is_object($this->data->document)) $this->data->document = new StdClass;
+            $this->data->document->cover = null;
+        } else {
+            $this->data->document->cover = json_decode($this->data->document->cover);
+        }
+    }
+
+    return parent::__get($name);
+}
+    ]]>
+    </model:Script>
+</model:Model>

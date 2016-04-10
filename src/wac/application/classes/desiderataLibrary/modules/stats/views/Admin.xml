@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    xmlns:m="desiderataLibrary.modules.stats.views.components.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:StateTabNavigation id="tabbar" addWrapDiv="true" cssClass="nav nav-tabs" cssClassCurrent="active" />
+    <glz:JSscript src="application/templates/js/dygraph/dygraph-combined.js" editableRegion="head" />
+
+    <mvc:State name="index" label="Login">
+        <m:Stats id="stats" skin="Stats.html" eventToShow="login" graphicBorder="0"/>
+    </mvc:State>
+
+    <mvc:State name="index2" label="Registrazioni">
+        <m:Stats id="stats" skin="Stats.html" eventToShow="registration" graphicBorder="0"/>
+    </mvc:State>
+
+    <mvc:State name="index3" label="Letture">
+        <glz:SearchFilters id="sf">
+          <glz:DataDictionary id="dbIdPublication" query="readPublication" recordClassName="desiderataLibrary.modules.stats.models.Model" />
+          <glz:List id="idPublication" emptyValue="-" required="false" dataProvider="{dbIdPublication}" label="{i18n:Pubblicazione}"/>
+      </glz:SearchFilters>
+      <m:Stats id="stats" skin="Stats.html" eventToShow="read" graphicBorder="0"/>
+    </mvc:State>
+
+    <mvc:State name="index4" label="Codici">
+       <glz:SearchFilters id="sf">
+          <glz:DataDictionary id="dbIdPublication" query="codePublication" recordClassName="desiderataLibrary.modules.stats.models.Model" />
+          <glz:List id="idPublication" emptyValue="-" required="false" dataProvider="{dbIdPublication}" label="{i18n:Pubblicazione}"/>
+      </glz:SearchFilters>
+      <m:Stats id="stats" skin="Stats.html" eventToShow="code" graphicBorder="0"/>
+    </mvc:State>
+
+    <mvc:State name="index5" label="Codici Blocco">
+        <m:Stats id="stats" skin="Stats.html" eventToShow="burnCode" graphicBorder="0"/>
+    </mvc:State>
+</mvc:Page>

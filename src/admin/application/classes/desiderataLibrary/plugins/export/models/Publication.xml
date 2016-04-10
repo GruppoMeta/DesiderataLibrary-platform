@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="menus_tbl" model:usePrefix="true">
+
+    <model:Query name="getPublications"><![CDATA[
+SELECT *
+FROM menus_tbl t1
+JOIN menudetails_tbl detail ON t1.menu_id = detail.menudetail_FK_menu_id
+WHERE t1.menu_pageType = 'Publication'
+ORDER BY menudetail_title
+    ]]></model:Query>
+
+    <model:Script parent="model">
+    <![CDATA[
+public function __get($name)
+{
+    if ($name=='document' && !property_exists($this->data, 'document')) {
+        // legge i contenuti della pubblicazione
+        $this->data->document = json_decode($this->data->document_detail_object)->content;
+        if (!is_object($this->data->document)) {
+            $this->data->document = new StdClass;
+        }
+
+        $this->data->document->cover = !property_exists($this->data->document, 'cover') ? null : json_decode($this->data->document->cover);
+    }
+
+    return parent::__get($name);
+}
+    ]]>
+    </model:Script>
+</model:Model>

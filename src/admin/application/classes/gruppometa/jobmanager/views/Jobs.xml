@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvc:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:mvc="org.glizy.mvc.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    xmlns:c="gruppometa.jobmanager.views.components.*"
+    controllerName="gruppometa.jobmanager.controllers.*"
+    defaultEditableRegion="content"
+    templateType="php"
+    templateFileName="Page.php">
+    <glz:Import src="_common.xml" />
+
+    <mvc:State name="index" >
+        <c:JobsReport id="report" paginate="{paginate}"/>
+        <glz:PaginateResult id="paginate" pageLength="20" cssClass="pagination" />
+    </mvc:State>
+
+</mvc:Page>

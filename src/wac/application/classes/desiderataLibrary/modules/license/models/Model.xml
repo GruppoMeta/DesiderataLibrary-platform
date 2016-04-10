@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+    model:tableName="licenses_tbl" model:usePrefix="true">
+
+    <model:Query name="licenses" type="function" arguments="userId,libraryId">
+    <![CDATA[
+        $expr = $iterator->expr();
+
+        $iterator->select('distinct t1.*', 't2.menu_id', 't3.menudetail_title', 't5.document_index_int_value as publisherId')
+                ->join('t1', $this->tablePrefix.'menus_tbl', 't2', $expr->eq('t2.menu_id', 'license_FK_menu_id'))
+                ->join('t1', $this->tablePrefix.'menudetails_tbl', 't3', $expr->andX($expr->eq('t3.menudetail_FK_menu_id', 't2.menu_id'), 't3.menudetail_FK_language_id = 1'))
+                ->join('t1', 'documents_index_int_tbl', 't4', 't4.document_index_int_name="id" AND t4.document_index_int_value=t2.menu_id')
+                ->join('t1', 'documents_index_int_tbl', 't5', 't4.document_index_int_FK_document_detail_id=t5.document_index_int_FK_document_detail_id AND t5.document_index_int_name="publisherid"')
+                ->orderBy('t3.menudetail_title');
+
+        if ($userId) {
+            $iterator->where('license_FK_user_id', $userId);
+        }
+        if ($libraryId) {
+            $iterator->where('license_FK_library_id', $libraryId);
+        }
+    ]]>
+    </model:Query>
+
+    <model:Query name="licensesForPublication" type="function" arguments="pubId">
+    <![CDATA[
+        $iterator
+                ->join('t1', 'users_tbl', 't2', 't1.license_FK_user_id=t2.user_id')
+                ->where('license_FK_menu_id', $pubId)
+                ->orderBy('user_lastName')
+                ->orderBy('user_firstName')
+                ->groupBy('t2.user_id');
+
+    ]]>
+    </model:Query>
+
+</model:Model>

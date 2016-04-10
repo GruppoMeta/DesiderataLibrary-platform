@@ -1,0 +1,19 @@
+SetEnvIf Origin "http(s)?://(www.)?(127.0.0.1:9000|93.63.174.170|polodigitale.gruppometa.it:8080|polodigitale.gruppometa.it:8081|polodigitale.gruppometa.it:8084|polodigitale.gruppometa.it:8085|localhost:8090|localhost:8383|localhost:3000|127.0.0.1:8090|localhost|localhost:8080|192.168.0.4:8090|79.56.200.22:8080)$" AccessControlAllowOrigin=$0$1
+Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+Header set Access-Control-Allow-Methods "POST, GET, PUT, OPTIONS, PATCH, DELETE"
+Header set Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type,X-Requested-With,X-File-Name,X-HTTP-Method-Override, Cache-control, Content-Length"
+Header set Access-Control-Allow-Credentials true
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(ajax\.php|index\.php|index\.html|static/|cache/|public/|favicon\.ico) - [L]
+
+    RewriteRule ^application/mediaArchive/export - [F,NC]
+    RewriteRule ^application/.*\.js - [L]
+    RewriteRule ^application/mediaArchive - [L]
+    RewriteRule ^application(/|$) - [F,NC]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^rest/(.*)$ rest.php?$1 [QSA,L]
+    RewriteRule ^cds/(.*)$ rest.php?$1 [QSA,L]
+</IfModule>
+

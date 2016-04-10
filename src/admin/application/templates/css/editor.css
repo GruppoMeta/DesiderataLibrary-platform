@@ -1,0 +1,29 @@
+body {
+	font-size:18px;
+	line-height:1.4;
+}
+img.left,
+img.right,
+img.center
+{
+	float: left;
+	clear: left;
+	margin: 0 7px 7px 7px;
+	display: block;
+	border: 1px solid #CCCCCC;
+	padding: 2px;
+	position: relative;
+}
+img.right {
+	float: right;
+	clear: right;
+}
+img.center {
+	float: none;
+	clear: both;
+	margin: auto;
+}
+img.noBorder {
+	border: 0;
+	padding: 0;
+}

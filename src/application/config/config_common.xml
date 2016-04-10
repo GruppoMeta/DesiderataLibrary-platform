@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Config xmlns:glz="http://www.glizy.org/dtd/1.0/">
+    <glz:Import src="config_easybook_common.xml" />
+
+    <glz:Param name="CHARSET" value="UTF-8" />
+    <glz:Param name="APP_NAME" value="Desiderata Library" />
+    <glz:Param name="APP_VERSION" value="1.0" />
+    <glz:Param name="APP_AUTHOR">
+        <![CDATA[Gruppo Meta <http://www.gruppometa.it>]]>
+    </glz:Param>
+
+    <glz:Param name="IMG_WIDTH" value="400" />
+    <glz:Param name="IMG_HEIGHT" value="300" />
+    <glz:Param name="THUMB_WIDTH" value="150" />
+    <glz:Param name="THUMB_HEIGHT" value="150" />
+    <glz:Param name="THUMB_SMALL_WIDTH" value="56" />
+    <glz:Param name="THUMB_SMALL_HEIGHT" value="56" />
+
+    <glz:Param name="SEF_URL" value="full" />
+    <glz:Param name="CACHE_CODE" value="-1" />
+    <glz:Param name="USER_LOG" value="false" />
+    <glz:Param name="DB_CHARSET" value="utf8" />
+    <glz:Param name="SESSION_PREFIX" value="dl" />
+    <glz:Param name="DEFAULT_LANGUAGE" value="it" />
+
+    <glz:Param name="BASE_REGISTRY_PATH" value="easybook" />
+    <glz:Param name="STATIC_FOLDER" value="static/easybook/" />
+    <glz:Param name="TEMPLATE_FOLDER" value="{{path:STATIC_DIR}}templates/" />
+
+    <glz:Param name="glizy.dataAccess.serializationMode" value="json" />
+    <glz:Param name="ACL_ENABLED" value="false" />
+
+    <glz:Param name="SMTP_SENDER" value="INFO" />
+    <glz:Param name="SMTP_EMAIL" value="info@desideratalibrary.it" />
+    <glz:Param name="SMTP_HOST" value="metadesideratapaas_smtp.service.consul" />
+    <glz:Param name="SMTP_USER" value="desiderata" />
+    <glz:Param name="SMTP_PSW" value="qpwoeiruty" />
+
+    <glz:Param name="desiderata.hashids.salt" value="1234567" />
+    <glz:Param name="desiderataLibrary.importPDF.folder" value="/opt/data/ftp/pdf"/>
+    <glz:Param name="desiderataLibrary.importPDF.pdfImportServiceUrl" value="desideratalibrarypaas_node-5050.service.consul:5050"/>
+    <glz:Param name="desiderataLibrary.importPDF.callBackUrl" value="http://desideratalibrarypaas_apache.service.consul/backoffice/"/>
+    <glz:Param name="desiderataLibrary.importPDF.exportFolder" value="/opt/data/export/pdf"/>
+    <glz:Param name="desiderataLibrary.importPDF.publicUrl" value="/pdf"/>
+    <glz:Param name="desiderataLibrary.importPDF.zoomLevels" value="1,1.25,1.5,1.75,2,2.5"/>
+    <glz:Param name="desiderataLibrary.plugins.seo.folder" value="/public"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.cache" value="cache/export"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.folder" value="{{path:APPLICATION_TO_ADMIN}}mediaArchive/export/"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.backdoor.key" value="123456"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.backdoor.value" value="123456"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.drm" value="false"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.drm.jar" value="viditrust/Encrypter.jar"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.drm.keys" value="viditrust/keys/keyfile_2048_privKey.key"/>
+    <glz:Param name="desiderataLibrary.plugins.offline.maxInstallation" value="1000"/>
+    <glz:Param name="desiderataLibrary.ecommerce.gateway" value="desiderataLibrary.modules.order.gateway.Simulate"/>
+    <glz:Param name="desiderataLibrary.ecommerce.email" value=""/>
+    <glz:Param name="desiderataLibrary.support.email" value=""/>
+    <glz:Param name="desiderataLibrary.recommender.host" value=""/>
+
+    <glz:Param name="desiderataLibrary.search.pageLength" value="10" />
+</glz:Config>

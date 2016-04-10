@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model:Model
+	xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:model="http://www.glizy.org/dtd/1.0/model/"
+	model:tableName="eventStats_tbl" model:usePrefix="true">
+
+	<model:Query name="getEvents" type="function" arguments="eventType">
+		<![CDATA[
+        $iterator->where('eventStats_nomeEvento', $eventType)
+				 ->orderBy('eventStats_datetime',ASC);
+    ]]>
+	</model:Query>
+
+	<model:Query name="getEventsPublication" type="function" arguments="eventType,idPublication">
+		<![CDATA[
+				$iterator->where('eventStats_nomeEvento', $eventType)
+								->where('eventStats_idPubblicazione',$idPublication)
+								->orderBy('eventStats_datetime',ASC);
+		]]>
+	</model:Query>
+
+	<model:Query name="getParam" type="function" arguments="eventType">
+		<![CDATA[
+        $iterator->select('DISTINCT eventStats_parametro')
+								 ->where('eventStats_nomeEvento', $eventType);
+    ]]>
+	</model:Query>
+
+	<model:Query name="readPublication" type="function">
+		<![CDATA[
+        $iterator->select('DISTINCT eventStats_idPubblicazione')
+								 ->where('eventStats_nomeEvento', 'read')
+								 ->where('eventStats_idPubblicazione','0','>');
+    ]]>
+	</model:Query>
+
+	<model:Query name="codePublication" type="function">
+		<![CDATA[
+				$iterator->select('DISTINCT eventStats_idPubblicazione')
+								 ->where('eventStats_nomeEvento', 'code')
+								 ->where('eventStats_idPubblicazione','0','>');
+		]]>
+	</model:Query>
+
+</model:Model>

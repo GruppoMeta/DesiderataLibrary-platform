@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<glz:Page id="Page"
+    xmlns:glz="http://www.glizy.org/dtd/1.0/"
+    xmlns:e="gruppometa.easybook.views.components.*"
+    xmlns:cms="org.glizycms.views.components.*"
+    xmlns:d="desiderataLibrary.views.components.*"
+    templateType="php"
+    templateFileName="page.php"
+    defaultEditableRegion="content" >
+
+    <e:GUID id="refId" label="{i18n:ID interno}" data="index=text" />
+
+    <glz:Fieldset label="Metadati">
+        <glz:Input id="keywords" label="{i18n:Keywords}" data="type=selectfrom;multiple=true;add_new_values=true;proxy=org.glizycms.contents.models.proxy.ContentFindTermProxy;proxy_params={&quot;multisite&quot;:false};index=text"  />
+
+        <glz:Input id="tags" label="{i18n:Taggatura ontologica}" data="type=selectfrom;multiple=true;add_new_values=false;proxy=desiderataLibrary.modules.ontologybuilder.models.proxy.EntityContentProxy;format_selection=formatSelection;format_result=formatResult;return_object=true;index=id:int,type:text" size="255" />
+
+        <glz:Input id="geo" label="{i18n:Localizzazione}" size="90" required="false" data="type=googlemaps" />
+        <glz:Checkbox id="webIndex" label="{i18n:Indicizza su web (Google, Bing)}" />
+        <glz:Checkbox id="hideInIndex" label="{i18n:Nascondi nell'indice}" />
+        <glz:Checkbox id="hideInSearch" label="{i18n:Non includere nella ricerca}" />
+    </glz:Fieldset>
+
+
+    <d:PdfEditor id="pageNum" />
+    <glz:LongText id="text" label="{i18n:Testo per ricerca}" adm:rows="20" adm:cols="75" adm:htmlEditor="false" />
+</glz:Page>
